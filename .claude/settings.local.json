@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd:*)",
+      "Read(//d/dev/**)",
+      "Bash(npx create-next-app@latest bordon-temp --typescript --tailwind --app --src-dir --import-alias \"@/*\" --no-git --yes)",
+      "Bash(cp:*)"
+    ]
+  }
+}
