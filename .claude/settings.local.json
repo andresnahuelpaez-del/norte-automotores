@@ -4,7 +4,24 @@
       "Bash(cd:*)",
       "Read(//d/dev/**)",
       "Bash(npx create-next-app@latest bordon-temp --typescript --tailwind --app --src-dir --import-alias \"@/*\" --no-git --yes)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3000)",
+      "Bash(curl:*)",
+      "Bash(findstr \"LISTENING\")",
+      "Bash(findstr -E \"300[0-9]|301[0-9]|302[0-9]\")",
+      "Bash(npm run:*)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(taskkill:*)",
+      "Bash(ipconfig)",
+      "Bash(ls:*)",
+      "Bash(npx tsc:*)",
+      "Bash(Remove-Item -Recurse -Force \"D:\\\\dev\\\\norte-automotores\\\\node_modules\", \"D:\\\\dev\\\\norte-automotores\\\\.next\" -ErrorAction SilentlyContinue)",
+      "Bash(npm install:*)",
+      "Bash(npm audit:*)",
+      "Bash(npx kill-port:*)",
+      "Bash(findstr \"IPv4\")",
+      "Bash(claude install:*)"
     ]
   }
 }
