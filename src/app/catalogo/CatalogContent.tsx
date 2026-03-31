@@ -46,7 +46,8 @@ export async function CatalogContent({ searchParams = {} }: Props) {
     if (cars.length === 0 && hasFilters) {
       suggested = await getCars({ limit: 6 });
     }
-  } catch {
+  } catch (err) {
+    console.error("[CatalogContent] Error fetching data:", err);
     config = {
       whatsapp_number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "3804796317",
       show_prices_globally: "true",

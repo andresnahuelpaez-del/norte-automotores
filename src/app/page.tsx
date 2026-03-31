@@ -47,7 +47,8 @@ export default async function HomePage() {
       getCars({ financing_available: true, vehicle_type: "car", limit: 100 }),
       getSiteConfig(),
     ]);
-  } catch {
+  } catch (err) {
+    console.error("[HomePage] Error fetching data:", err);
     config = {
       whatsapp_number: WA,
       show_prices_globally: "true",

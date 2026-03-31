@@ -41,7 +41,10 @@ export async function getCars(filters?: {
   if (filters?.offset) query = query.range(filters.offset, (filters.offset + (filters.limit || 20)) - 1);
 
   const { data, error } = await query;
-  if (error) throw error;
+  if (error) {
+    console.error("[getCars] Supabase error:", error);
+    throw error;
+  }
   return data as Car[];
 }
 
