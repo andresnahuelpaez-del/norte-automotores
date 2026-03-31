@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Phone, MapPin, Mail, Instagram, Facebook, Clock } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
-const WA = "3804796317";
+const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "3804796317";
 const IG = "https://instagram.com/norte.automotores";
 const FB = "https://facebook.com/share/177Lw7quNV/?mibextid=wwXlfr";
 const ADDRESS = "Av. Coronel Felipe Varela 1776, La Rioja, Argentina";

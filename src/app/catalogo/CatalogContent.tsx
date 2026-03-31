@@ -76,14 +76,15 @@ export async function CatalogContent({ searchParams = {} }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Results count + sort */}
       <div className="flex items-center justify-between mb-6">
-        <p className="text-white/50 text-sm font-medium">
-          <span className="text-white font-bold text-lg">{cars.length}</span> autos encontrados
+        <p className="text-white/50 text-sm font-medium flex items-baseline gap-2">
+          <span className="font-display font-extrabold text-2xl text-white leading-none">{cars.length}</span>
+          <span>autos encontrados</span>
           {(condicion || marca || tipo || financiacion) && (
             <Link
               href="/catalogo"
-              className="ml-3 text-brand-red text-xs hover:underline"
+              className="ml-1 text-brand-red text-xs hover:underline font-mono"
             >
-              × Limpiar filtros
+              × limpiar
             </Link>
           )}
         </p>
@@ -130,6 +131,11 @@ export async function CatalogContent({ searchParams = {} }: Props) {
             </Link>
           );
         })}
+      </div>
+
+      {/* Separator */}
+      <div className="relative w-full h-px bg-white/[0.05] mb-6">
+        <div className="absolute left-0 top-0 h-full w-16 bg-brand-red/40" />
       </div>
 
       {/* Marca filter */}

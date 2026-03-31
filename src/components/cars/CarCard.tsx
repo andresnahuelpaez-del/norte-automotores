@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Gauge, Settings } from "lucide-react";
+import { Gauge, Settings, Images } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { cn, formatPrice, formatMileage, buildCarWhatsAppUrl } from "@/lib/utils";
 import type { Car } from "@/types";
@@ -14,6 +14,14 @@ interface CarCardProps {
 
 export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const fuelLabel: Record<string, string> = {
+    nafta: "Nafta", diesel: "Diésel", electrico: "Eléctrico",
+    hibrido: "Híbrido", gnc: "GNC",
+  };
+  const transLabel: Record<string, string> = {
+    manual: "Manual", automatico: "Automático", automatica: "Automática",
+  };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -37,7 +45,7 @@ export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
       onMouseLeave={handleMouseLeave}
     >
       {/* Red racing stripe top */}
-      <div className="absolute top-0 left-0 right-0 h-[3px] bg-brand-red z-10 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-400" />
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-brand-red z-10 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
 
       {/* Image */}
       <div className="relative aspect-video overflow-hidden">
@@ -47,7 +55,7 @@ export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
               src={mainImage}
               alt={`${car.brand} ${car.model} ${car.year}`}
               fill
-              className="object-cover group-hover:scale-107 transition-transform duration-700"
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
             {/* Gradient overlay */}
@@ -101,6 +109,14 @@ export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
             </span>
           )}
         </div>
+
+        {/* Image count badge */}
+        {car.images && car.images.length > 1 && (
+          <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm px-2 py-1 text-white/60 text-[10px] font-mono">
+            <Images size={9} />
+            {car.images.length}
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -125,7 +141,7 @@ export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
         </h3>
 
         {/* Specs */}
-        <div className="flex items-center gap-3 text-[11px] text-white/35 mt-2 mb-4">
+        <div className="flex items-center gap-3 text-[11px] text-white/40 mt-2 mb-4">
           {car.mileage != null && car.mileage > 0 && (
             <span className="flex items-center gap-1">
               <Gauge size={11} />
@@ -137,14 +153,14 @@ export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
               <span className="w-px h-3 bg-white/10" />
               <span className="flex items-center gap-1">
                 <Settings size={11} />
-                {car.transmission}
+                {transLabel[car.transmission] ?? car.transmission}
               </span>
             </>
           )}
           {car.fuel_type && (
             <>
               <span className="w-px h-3 bg-white/10" />
-              <span>{car.fuel_type}</span>
+              <span>{fuelLabel[car.fuel_type] ?? car.fuel_type}</span>
             </>
           )}
         </div>
@@ -165,7 +181,10 @@ export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
                 </span>
               </div>
             ) : (
-              <span className="text-sm text-white/30 italic">Consultar precio</span>
+              <div>
+                <p className="text-white/25 text-[9px] uppercase tracking-[0.25em] mb-0.5">Precio</p>
+                <span className="text-sm text-white/50 font-mono">Consultar</span>
+              </div>
             )}
           </div>
 
@@ -175,7 +194,7 @@ export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
               className="bg-brand-red hover:bg-brand-red-dark text-white text-sm font-bold px-4 py-2.5 transition-all duration-200 hover:shadow-lg hover:shadow-brand-red/30 uppercase tracking-wide"
               style={{ clipPath: "polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%)" }}
             >
-              Ver más
+              Ver auto
             </Link>
             <a
               href={waUrl}
