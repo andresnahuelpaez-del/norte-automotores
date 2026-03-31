@@ -22,8 +22,8 @@ export default async function EditarAutoPage({ params }: Props) {
   if (!car) notFound();
 
   return (
-    <div className="p-8">
-      <h1 className="font-display font-bold text-3xl text-brand-dark uppercase mb-6">
+    <div className="p-4 md:p-8">
+      <h1 className="font-display font-bold text-2xl md:text-3xl text-brand-dark uppercase mb-5">
         Editar: {car.brand} {car.model} {car.year}
       </h1>
       <CarForm car={car} />

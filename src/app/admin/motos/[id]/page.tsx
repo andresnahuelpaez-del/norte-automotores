@@ -22,8 +22,8 @@ export default async function EditarMotoPage({ params }: Props) {
   if (!moto) notFound();
 
   return (
-    <div className="p-8">
-      <h1 className="font-display font-bold text-3xl text-brand-dark uppercase mb-6">
+    <div className="p-4 md:p-8">
+      <h1 className="font-display font-bold text-2xl md:text-3xl text-brand-dark uppercase mb-5">
         Editar: {moto.brand} {moto.model} {moto.year}
       </h1>
       <CarForm car={moto} defaultVehicleType="moto" />
