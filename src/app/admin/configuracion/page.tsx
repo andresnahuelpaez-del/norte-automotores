@@ -47,8 +47,8 @@ export default function ConfiguracionPage() {
   };
 
   return (
-    <div className="p-8">
-      <h1 className="font-display font-bold text-3xl text-brand-dark uppercase mb-6">Configuración</h1>
+    <div className="p-4 md:p-8">
+      <h1 className="font-display font-bold text-2xl md:text-3xl text-brand-dark uppercase mb-5">Configuración</h1>
 
       <div className="space-y-6 max-w-2xl">
         {/* Toggles globales */}

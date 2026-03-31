@@ -110,7 +110,7 @@ export async function CatalogContent({ searchParams = {} }: Props) {
       </div>
 
       {/* Quick filters */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="flex gap-2 mb-6 overflow-x-auto pb-1 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:pb-0">
         {quickFilters.map(({ label, params }) => {
           const href = buildFilterUrl(activeFilters, params);
           const isActive = Object.entries(params).every(([k, v]) => {
@@ -139,8 +139,8 @@ export async function CatalogContent({ searchParams = {} }: Props) {
       </div>
 
       {/* Marca filter */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        <span className="text-xs text-white/40 self-center font-medium">Marca:</span>
+      <div className="flex gap-2 mb-8 overflow-x-auto pb-1 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:pb-0">
+        <span className="text-xs text-white/40 self-center font-medium shrink-0">Marca:</span>
         {["", ...BRANDS.slice(0, 10)].map(b => (
           <Link
             key={b || "todas"}

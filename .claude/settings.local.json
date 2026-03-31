@@ -21,7 +21,32 @@
       "Bash(npm audit:*)",
       "Bash(npx kill-port:*)",
       "Bash(findstr \"IPv4\")",
-      "Bash(claude install:*)"
+      "Bash(claude install:*)",
+      "Bash(grep -E \"\\\\.\\(ts|tsx|js|jsx\\)$\")",
+      "Bash(vercel --version)",
+      "Bash(vercel whoami:*)",
+      "Bash(vercel ls:*)",
+      "Bash(vercel env:*)",
+      "Bash(vercel link:*)",
+      "Bash(ANON_KEY=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvenljdGZjcWFra3Z2aXF4andlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3MjExMTAsImV4cCI6MjA4OTI5NzExMH0.YQMtbCAVvjtfUAcJlcPuwADAqQwJXb-S-w82ARQlfwc\" URL=\"https://pozyctfcqakkvviqxjwe.supabase.co\" __NEW_LINE_dcb61dba2d960a1e__ echo \"=== CARS activos ===\" curl -s \"$URL/rest/v1/cars?is_active=eq.true&select=id,brand,model,vehicle_type,images&limit=5\" -H \"apikey: $ANON_KEY\" -H \"Authorization: Bearer $ANON_KEY\")",
+      "Bash(python -m json.tool)",
+      "Bash(ANON_KEY=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvenljdGZjcWFra3Z2aXF4andlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3MjExMTAsImV4cCI6MjA4OTI5NzExMH0.YQMtbCAVvjtfUAcJlcPuwADAqQwJXb-S-w82ARQlfwc\")",
+      "Bash(URL=\"https://pozyctfcqakkvviqxjwe.supabase.co\")",
+      "Bash(__NEW_LINE_5fc0a41ba722616c__ curl:*)",
+      "Bash(node:*)",
+      "Bash(vercel logs:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(vercel deploy:*)",
+      "Bash(vercel inspect:*)",
+      "Read(//c/Users/NAHUEL/AppData/Roaming/com.vercel.cli//**)",
+      "Read(//c/Users/NAHUEL/**)",
+      "Bash(/d/dev/norte-automotores/.env.local:*)",
+      "Bash(1 echo:*)",
+      "Bash(SERVICE=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml6ZG14bHd0Z2F0b3lwZ3d2dG1xIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDk2MDU3NiwiZXhwIjoyMDkwNTM2NTc2fQ.on_PE67Hzsf7oOg-xYkNtOFOItS45pQw6nc5tcMexoQ\")",
+      "Bash(__NEW_LINE_3572a16c74005b49__ node -e \":*)",
+      "Bash(__NEW_LINE_b0c5caaf4b822bb9__ node -e \":*)"
     ]
   }
 }

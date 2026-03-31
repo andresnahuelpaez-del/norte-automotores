@@ -21,11 +21,11 @@ export default async function AdminDashboard() {
   } catch {}
 
   return (
-    <div className="p-8">
-      <h1 className="font-display font-bold text-3xl text-brand-dark uppercase mb-2">Dashboard</h1>
-      <p className="text-brand-gray text-sm mb-8">Resumen general del sitio</p>
+    <div className="p-4 md:p-8">
+      <h1 className="font-display font-bold text-2xl md:text-3xl text-brand-dark uppercase mb-1">Dashboard</h1>
+      <p className="text-brand-gray text-sm mb-6">Resumen general del sitio</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 mb-8">
         {[
           { label: "Total autos", value: stats.total, icon: Car, color: "bg-blue-50 text-blue-600" },
           { label: "Publicados", value: stats.active, icon: Eye, color: "bg-green-50 text-green-600" },
@@ -42,17 +42,23 @@ export default async function AdminDashboard() {
         ))}
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-3">
         <Link
           href="/admin/autos/nuevo"
-          className="bg-brand-red hover:bg-brand-red-dark text-white font-bold px-6 py-3 rounded-none transition-colors"
+          className="bg-brand-red hover:bg-brand-red-dark text-white font-bold px-5 py-2.5 rounded-none transition-colors text-sm"
         >
-          + Publicar nuevo auto
+          + Nuevo auto
+        </Link>
+        <Link
+          href="/admin/motos/nuevo"
+          className="bg-brand-dark hover:bg-brand-dark/80 text-white font-bold px-5 py-2.5 rounded-none transition-colors text-sm"
+        >
+          + Nueva moto
         </Link>
         <Link
           href="/catalogo"
           target="_blank"
-          className="border-2 border-brand-red text-brand-red hover:bg-brand-red hover:text-white font-bold px-6 py-3 rounded-none transition-colors"
+          className="border-2 border-brand-red text-brand-red hover:bg-brand-red hover:text-white font-bold px-5 py-2.5 rounded-none transition-colors text-sm"
         >
           Ver sitio →
         </Link>
