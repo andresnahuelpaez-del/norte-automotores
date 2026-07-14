@@ -13,6 +13,7 @@ import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { getCars, getSiteConfig } from "@/lib/supabase/queries";
+import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Norte Automotores | Venta de Autos Usados en La Rioja",
@@ -824,16 +825,16 @@ export default async function HomePage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "AutoDealer",
-            "@id": "https://norteautomotores.com.ar/#autoDealer",
+            "@id": `${SITE_URL}/#autoDealer`,
             name: "Norte Automotores",
             description: "Venta de autos usados seleccionados en excelente estado. Recibimos tu auto o moto. La Rioja, Argentina.",
-            url: "https://norteautomotores.com.ar",
+            url: SITE_URL,
             telephone: "+543804796317",
             email: "ventas@norteautomotores.com.ar",
             priceRange: "$$",
             hasMap: "https://www.google.com/maps/search/Norte+Automotores+La+Rioja",
-            image: "https://norteautomotores.com.ar/local.jpg",
-            logo: "https://norteautomotores.com.ar/norte-logo.PNG",
+            image: `${SITE_URL}/local.jpg`,
+            logo: `${SITE_URL}/norte-logo.PNG`,
             address: {
               "@type": "PostalAddress",
               streetAddress: "Av. Coronel Felipe Varela 1776",

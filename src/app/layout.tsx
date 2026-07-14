@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/contact/WhatsAppButton";
+import { SITE_URL } from "@/lib/constants";
 
 const barlow = Barlow_Condensed({
   variable: "--font-barlow",
@@ -18,7 +19,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://norteautomotores.com.ar"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Norte Automotores | Venta de Autos Usados en La Rioja",
     template: "%s | Norte Automotores — La Rioja",
@@ -52,13 +53,13 @@ export const metadata: Metadata = {
     "okm la rioja",
   ],
   alternates: {
-    canonical: "https://norteautomotores.com.ar",
+    canonical: SITE_URL,
   },
   openGraph: {
     siteName: "Norte Automotores",
     locale: "es_AR",
     type: "website",
-    url: "https://norteautomotores.com.ar",
+    url: SITE_URL,
     title: "Norte Automotores | Venta de Autos Usados en La Rioja",
     description: "Venta de autos usados seleccionados en excelente estado. Recibimos tu auto o moto. La Rioja, Argentina.",
     images: [{ url: "/local.jpg", width: 1200, height: 630, alt: "Norte Automotores — La Rioja, Argentina" }],
