@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/contact/WhatsAppButton";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 
 const barlow = Barlow_Condensed({
   variable: "--font-barlow",
@@ -98,7 +97,6 @@ export default function RootLayout({
             opacity: 0.032,
           }}
         />
-        <CustomCursor />
         <Navbar />
         <main className="pt-[108px]">{children}</main>
         <Footer />
