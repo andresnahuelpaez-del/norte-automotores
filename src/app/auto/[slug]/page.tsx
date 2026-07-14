@@ -8,6 +8,8 @@ import { getCarBySlug, getCars, getSiteConfig, incrementCarViews } from "@/lib/s
 import { formatPrice, formatMileage, buildCarWhatsAppUrl } from "@/lib/utils";
 import { CarCard } from "@/components/cars/CarCard";
 import { ImageSlider } from "@/components/cars/ImageSlider";
+import { ShareButtons } from "@/components/cars/ShareButtons";
+import { SITE_URL } from "@/lib/constants";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -52,7 +54,7 @@ export default async function AutoDetailPage({ params }: Props) {
     if (!car) notFound();
     // Fire and forget — no bloquea el render
     incrementCarViews(car.id);
-    related = await getCars({ body_type: car.body_type, limit: 4 });
+    related = await getCars({ body_type: car.body_type, limit: 4, light: true });
     related = related.filter((c) => c.id !== car!.id).slice(0, 4);
   } catch {
     notFound();
@@ -140,6 +142,12 @@ export default async function AutoDetailPage({ params }: Props) {
                 </a>
               </div>
 
+              <ShareButtons
+                url={`${SITE_URL}/auto/${car!.slug}`}
+                title={`${car!.brand} ${car!.model} ${car!.year} — Norte Automotores`}
+                text={`Mirá este ${car!.brand} ${car!.model} ${car!.year}${car!.show_price && car!.price ? ` a ${formatPrice(car!.price, car!.currency || "ARS")}` : ""} en Norte Automotores, La Rioja`}
+              />
+
               {/* Quick specs */}
               <div className="grid grid-cols-2 gap-3 mt-5 text-sm">
                 {[
@@ -222,7 +230,7 @@ export default async function AutoDetailPage({ params }: Props) {
             offers: car!.show_price && car!.price ? {
               "@type": "Offer",
               price: car!.price,
-              priceCurrency: "ARS",
+              priceCurrency: car!.currency || "ARS",
               availability: "https://schema.org/InStock",
               seller: { "@type": "AutoDealer", name: "Norte Automotores" },
             } : undefined,

@@ -17,16 +17,20 @@ function buildFilterUrl(base: Record<string, string | undefined>, override: Reco
   return `/catalogo${qs ? `?${qs}` : ""}`;
 }
 
+const PAGE_SIZE = 24;
+
 export async function CatalogContent({ searchParams = {} }: Props) {
   const condicion = searchParams.condicion;
   const marca = searchParams.marca;
   const tipo = searchParams.tipo;
   const financiacion = searchParams.financiacion;
   const orden = searchParams.orden;
+  const pagina = Math.max(1, parseInt(searchParams.pagina || "1", 10) || 1);
 
   let cars: Awaited<ReturnType<typeof getCars>> = [];
   let suggested: Awaited<ReturnType<typeof getCars>> = [];
   let config: Awaited<ReturnType<typeof getSiteConfig>>;
+  let hasMore = false;
 
   const hasFilters = !!(condicion || marca || tipo || financiacion);
 
@@ -38,13 +42,18 @@ export async function CatalogContent({ searchParams = {} }: Props) {
         body_type: tipo || undefined,
         financing_available: financiacion === "1" ? true : undefined,
         order_by: orden === "precio_asc" ? "price_asc" : orden === "precio_desc" ? "price_desc" : "created_at",
+        limit: PAGE_SIZE + 1,
+        offset: (pagina - 1) * PAGE_SIZE,
+        light: true,
       }),
       getSiteConfig(),
     ]);
+    hasMore = cars.length > PAGE_SIZE;
+    cars = cars.slice(0, PAGE_SIZE);
 
     // Si no hay resultados y había filtros activos, traer sugerencias
     if (cars.length === 0 && hasFilters) {
-      suggested = await getCars({ limit: 6 });
+      suggested = await getCars({ limit: 6, light: true });
     }
   } catch (err) {
     console.error("[CatalogContent] Error fetching data:", err);
@@ -77,8 +86,8 @@ export async function CatalogContent({ searchParams = {} }: Props) {
       {/* Results count + sort */}
       <div className="flex items-center justify-between mb-6">
         <p className="text-white/50 text-sm font-medium flex items-baseline gap-2">
-          <span className="font-display font-extrabold text-2xl text-white leading-none">{cars.length}</span>
-          <span>autos encontrados</span>
+          <span className="font-display font-extrabold text-2xl text-white leading-none">{cars.length}{hasMore ? "+" : ""}</span>
+          <span>autos encontrados{pagina > 1 ? ` — página ${pagina}` : ""}</span>
           {(condicion || marca || tipo || financiacion) && (
             <Link
               href="/catalogo"
@@ -193,11 +202,35 @@ export async function CatalogContent({ searchParams = {} }: Props) {
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cars.map((car) => (
-            <CarCard key={car.id} car={car} whatsappNumber={config.whatsapp_number} />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cars.map((car) => (
+              <CarCard key={car.id} car={car} whatsappNumber={config.whatsapp_number} />
+            ))}
+          </div>
+
+          {/* Paginación */}
+          {(pagina > 1 || hasMore) && (
+            <div className="flex items-center justify-center gap-3 mt-10">
+              {pagina > 1 && (
+                <Link
+                  href={buildFilterUrl(activeFilters, { pagina: pagina - 1 > 1 ? String(pagina - 1) : undefined })}
+                  className="px-6 py-3 border border-white/[0.15] hover:border-brand-red text-white font-bold text-sm uppercase tracking-wider transition-colors"
+                >
+                  ← Anterior
+                </Link>
+              )}
+              {hasMore && (
+                <Link
+                  href={buildFilterUrl(activeFilters, { pagina: String(pagina + 1) })}
+                  className="px-6 py-3 bg-brand-red hover:bg-brand-red-dark text-white font-bold text-sm uppercase tracking-wider transition-colors"
+                >
+                  Ver más autos →
+                </Link>
+              )}
+            </div>
+          )}
+        </>
       )}
     </div>
   );

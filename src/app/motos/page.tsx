@@ -34,7 +34,7 @@ export default async function MotosPage() {
 
   try {
     const [motosData, configData] = await Promise.all([
-      getCars({ vehicle_type: 'moto' }),
+      getCars({ vehicle_type: 'moto', limit: 60, light: true }),
       getSiteConfig(),
     ]);
     motos = motosData;

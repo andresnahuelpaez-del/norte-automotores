@@ -1,6 +1,11 @@
 import { createClient } from "./server";
 import type { Car, SiteConfig } from "@/types";
 
+// Columnas que necesitan las cards del catálogo/home. Excluye los campos
+// pesados (description, features) que solo usa la página de detalle.
+const CARD_COLUMNS =
+  "id, created_at, slug, brand, model, version, year, mileage, fuel_type, transmission, body_type, condition, price, currency, show_price, images, is_featured, financing_available, whatsapp_text, vehicle_type, engine_cc";
+
 export async function getCars(filters?: {
   condition?: string;
   brand?: string;
@@ -11,11 +16,12 @@ export async function getCars(filters?: {
   order_by?: 'created_at' | 'price_asc' | 'price_desc';
   limit?: number;
   offset?: number;
+  light?: boolean;
 }) {
   const supabase = await createClient();
   let query = supabase
     .from("cars")
-    .select("*")
+    .select(filters?.light ? CARD_COLUMNS : "*")
     .eq("is_active", true);
 
   if (filters?.condition) query = query.eq("condition", filters.condition);
@@ -45,7 +51,7 @@ export async function getCars(filters?: {
     console.error("[getCars] Supabase error:", error);
     throw error;
   }
-  return data as Car[];
+  return data as unknown as Car[];
 }
 
 export async function getCarBySlug(slug: string) {

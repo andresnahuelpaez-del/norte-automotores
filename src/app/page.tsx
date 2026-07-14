@@ -45,10 +45,10 @@ export default async function HomePage() {
 
   try {
     [featured, latestCars, latestMotos, financingCars, config] = await Promise.all([
-      getCars({ is_featured: true, vehicle_type: "all", limit: 6 }),
-      getCars({ vehicle_type: "car", limit: 6 }),
-      getCars({ vehicle_type: "moto", limit: 3 }),
-      getCars({ financing_available: true, vehicle_type: "car", limit: 100 }),
+      getCars({ is_featured: true, vehicle_type: "all", limit: 6, light: true }),
+      getCars({ vehicle_type: "car", limit: 6, light: true }),
+      getCars({ vehicle_type: "moto", limit: 3, light: true }),
+      getCars({ financing_available: true, vehicle_type: "car", limit: 60, light: true }),
       getSiteConfig(),
     ]);
   } catch (err) {
@@ -707,7 +707,7 @@ export default async function HomePage() {
                 className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white font-semibold px-5 py-3 rounded-none transition-all duration-300 hover:bg-white/[0.05] text-sm active:scale-95"
               >
                 <Phone size={15} />
-                +54 380 426-4242
+                +54 380 479-6317
               </a>
             </div>
           </div>

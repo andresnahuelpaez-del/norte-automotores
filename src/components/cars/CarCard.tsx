@@ -1,5 +1,3 @@
-"use client";
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Gauge, Settings, Images } from "lucide-react";
@@ -13,8 +11,6 @@ interface CarCardProps {
 }
 
 export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
   const fuelLabel: Record<string, string> = {
     nafta: "Nafta", diesel: "Diésel", electrico: "Eléctrico",
     hibrido: "Híbrido", gnc: "GNC",
@@ -23,13 +19,6 @@ export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
     manual: "Manual", automatico: "Automático", automatica: "Automática",
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientY - rect.top) / rect.height - 0.5) * 7;
-    const y = ((e.clientX - rect.left) / rect.width - 0.5) * -7;
-    setTilt({ x, y });
-  };
-  const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
   const mainImage = car.images?.[0];
   const waUrl = buildCarWhatsAppUrl(car, whatsappNumber);
 
@@ -38,11 +27,7 @@ export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
       className="group relative bg-[#060E1C] overflow-hidden border border-white/[0.07] hover:border-brand-red/60 transition-colors duration-300 hover:shadow-2xl hover:shadow-brand-red/15 flex flex-col"
       style={{
         clipPath: "polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px))",
-        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-        transition: "transform 0.18s ease-out, border-color 0.3s, box-shadow 0.3s",
       }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
     >
       {/* Red racing stripe top */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-brand-red z-10 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
