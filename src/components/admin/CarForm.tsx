@@ -13,6 +13,12 @@ interface Props {
   defaultVehicleType?: "car" | "moto";
 }
 
+const COLORES = ["Blanco", "Negro", "Gris", "Gris Plata", "Rojo", "Azul", "Verde", "Amarillo", "Naranja", "Marrón", "Bordó", "Beige"];
+
+function Hint({ children }: { children: React.ReactNode }) {
+  return <p className="text-[11px] text-brand-gray mt-1 leading-snug">{children}</p>;
+}
+
 export function CarForm({ car, defaultVehicleType = "car" }: Props) {
   const router = useRouter();
   const isEditing = !!car;
@@ -264,21 +270,25 @@ export function CarForm({ car, defaultVehicleType = "car" }: Props) {
           <div>
             <label className="label">Modelo *</label>
             <input required type="text" value={form.model} onChange={e => f("model", e.target.value)} className="input" placeholder={isMotos ? "MT-07" : "Corolla"} />
+            <Hint>Solo el modelo, sin la marca. Ej: {isMotos ? "MT-07, CB 300R, Pulsar NS 200" : "Corolla, Hilux, Onix Plus"}</Hint>
           </div>
           <div>
             <label className="label">Versión</label>
             <input type="text" value={form.version} onChange={e => f("version", e.target.value)} className="input" placeholder={isMotos ? "ABS" : "XEI AT"} />
+            <Hint>Terminación o equipamiento (opcional). Ej: {isMotos ? "ABS, Fireball" : "XEI AT, SRV 4x4, Highline"}</Hint>
           </div>
           <div>
             <label className="label">Año *</label>
             <input required type="number" value={form.year} onChange={e => f("year", Number(e.target.value))} className="input" min={1990} max={2030} />
+            <Hint>Año del modelo. Ej: 2022</Hint>
           </div>
           <div>
             <label className="label">Condición *</label>
             <select value={form.condition} onChange={e => f("condition", e.target.value)} className="input">
               <option value="used">Usado</option>
-              <option value="new">0km</option>
+              <option value="new">0km (sin uso)</option>
             </select>
+            <Hint>Si elegís 0km, el kilometraje se guarda en 0 automáticamente.</Hint>
           </div>
           {!isMotos && (
             <div>
@@ -287,6 +297,7 @@ export function CarForm({ car, defaultVehicleType = "car" }: Props) {
                 <option value="">Seleccionar</option>
                 {BODY_TYPES.map(b => <option key={b.value} value={b.value}>{b.label}</option>)}
               </select>
+              <Hint>Se usa en los filtros del catálogo (SUV, Sedán, Pickup...).</Hint>
             </div>
           )}
         </div>
@@ -298,11 +309,16 @@ export function CarForm({ car, defaultVehicleType = "car" }: Props) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="label">Kilometraje</label>
-            <input type="number" value={form.mileage} onChange={e => f("mileage", Number(e.target.value))} disabled={form.condition === "new"} className="input disabled:opacity-50" />
+            <input type="number" value={form.mileage} onChange={e => f("mileage", Number(e.target.value))} disabled={form.condition === "new"} className="input disabled:opacity-50" placeholder="45000" />
+            <Hint>Solo números, sin puntos. Ej: 45000 {form.condition === "new" && "— deshabilitado porque es 0km"}</Hint>
           </div>
           <div>
             <label className="label">Color</label>
-            <input type="text" value={form.color} onChange={e => f("color", e.target.value)} className="input" placeholder="Blanco" />
+            <input type="text" list="colores-sugeridos" value={form.color} onChange={e => f("color", e.target.value)} className="input" placeholder="Blanco" />
+            <datalist id="colores-sugeridos">
+              {COLORES.map(c => <option key={c} value={c} />)}
+            </datalist>
+            <Hint>Elegí uno de la lista o escribí el que corresponda. Ej: Blanco Perla</Hint>
           </div>
           <div>
             <label className="label">Combustible</label>
@@ -321,24 +337,29 @@ export function CarForm({ car, defaultVehicleType = "car" }: Props) {
           {!isMotos && (
             <div>
               <label className="label">Puertas</label>
-              <input type="number" value={form.doors} onChange={e => f("doors", Number(e.target.value))} className="input" min={2} max={6} />
+              <select value={form.doors} onChange={e => f("doors", Number(e.target.value))} className="input">
+                {[2, 3, 4, 5].map(d => <option key={d} value={d}>{d} puertas</option>)}
+              </select>
             </div>
           )}
           {isMotos && (
             <div>
               <label className="label">Cilindrada (cc)</label>
               <input type="number" value={form.engine_cc} onChange={e => f("engine_cc", Number(e.target.value))} className="input" placeholder="300" min={0} />
+              <Hint>En centímetros cúbicos. Ej: 200, 300, 650</Hint>
             </div>
           )}
         </div>
 
         <div className="mt-4">
           <label className="label">Descripción</label>
-          <textarea rows={4} value={form.description} onChange={e => f("description", e.target.value)} className="input resize-none" placeholder={`Descripción del ${isMotos ? "moto" : "auto"}...`} />
+          <textarea rows={4} value={form.description} onChange={e => f("description", e.target.value)} className="input resize-none" placeholder={isMotos ? "Ej: Honda CB 300R en excelente estado, único dueño, service oficial al día..." : "Ej: Toyota Corolla impecable, un solo dueño, service oficial completo, papeles al día..."} />
+          <Hint>Texto libre que se muestra en la página del vehículo. Contá estado, dueños, services, papeles.</Hint>
         </div>
 
         <div className="mt-4">
           <label className="label">Equipamiento / Características</label>
+          <Hint>Escribí una característica por vez (ej: &quot;Cámara de reversa&quot;) y apretá Enter o el botón +. Se muestran como lista con tildes en la página del vehículo.</Hint>
           <div className="flex gap-2 mb-2">
             <input
               type="text"
@@ -381,6 +402,7 @@ export function CarForm({ car, defaultVehicleType = "car" }: Props) {
               </select>
               <input type="number" value={form.price} onChange={e => f("price", Number(e.target.value))} className="input flex-1" placeholder="0 = consultar precio" />
             </div>
+            <Hint>Solo números, sin puntos. Ej: 25000000. Si ponés 0, el sitio muestra &quot;Consultar precio&quot;.</Hint>
           </div>
           <div className="flex flex-col gap-3 pt-4">
             <label className="flex items-center gap-3 cursor-pointer">
@@ -402,6 +424,7 @@ export function CarForm({ car, defaultVehicleType = "car" }: Props) {
         <div className="mt-4">
           <label className="label">Mensaje personalizado de WhatsApp (opcional)</label>
           <textarea rows={2} value={form.whatsapp_text} onChange={e => f("whatsapp_text", e.target.value)} className="input resize-none" placeholder="Hola! Me interesa el Toyota Corolla 2020..." />
+          <Hint>Es el mensaje que llega ya escrito cuando un cliente toca el botón de WhatsApp de este vehículo. Si lo dejás vacío, se genera solo con marca, modelo y año.</Hint>
         </div>
       </section>
 
@@ -418,7 +441,7 @@ export function CarForm({ car, defaultVehicleType = "car" }: Props) {
           <label className="flex items-center gap-3 cursor-pointer">
             <input type="checkbox" checked={form.is_featured} onChange={e => f("is_featured", e.target.checked)} className="w-4 h-4 accent-brand-red" />
             <span className="text-sm font-medium text-brand-dark">
-              Destacar (aparece en el inicio)
+              Destacar (aparece en la sección &quot;Destacados&quot; de la página de inicio)
             </span>
           </label>
         </div>

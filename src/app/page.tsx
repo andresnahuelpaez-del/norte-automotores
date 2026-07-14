@@ -142,7 +142,7 @@ export default async function HomePage() {
             <div className="flex pt-5 border-t border-brand-red/20">
               {[
                 { to: 150, suffix: "+", label: "en stock" },
-                { to: 10, suffix: "+", label: "años" },
+                { to: 24, suffix: "hs", label: "respuesta" },
                 { to: 100, suffix: "%", label: "financiación" },
               ].map((s, i) => (
                 <div key={s.label} className={`flex-1 ${i > 0 ? "border-l border-white/[0.06] pl-4" : ""}`}>
@@ -233,7 +233,7 @@ export default async function HomePage() {
               <div className="flex gap-8 pt-8 border-t border-brand-red/20">
                 {[
                   { to: 150, suffix: "+", label: "Vehículos en stock" },
-                  { to: 10, suffix: "+", label: "Años de experiencia" },
+                  { to: 24, suffix: "hs", label: "Respuesta por WhatsApp" },
                   { to: 100, suffix: "%", label: "Financiación propia" },
                 ].map((stat, i) => (
                   <div key={stat.label} className={i > 0 ? "border-l border-white/[0.06] pl-8" : ""}>
@@ -246,19 +246,6 @@ export default async function HomePage() {
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#060E1C] to-transparent pointer-events-none" />
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          QUICK SEARCH
-      ══════════════════════════════════════════════════════ */}
-      <section className="bg-[#081426] py-5 sm:py-7 border-t border-brand-red/20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white/[0.02] border border-white/[0.06] p-4 sm:p-5"
-            style={{ clipPath: "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))" }}
-          >
-            <QuickSearchForm />
-          </div>
         </div>
       </section>
 
@@ -414,6 +401,19 @@ export default async function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════
+          QUICK SEARCH
+      ══════════════════════════════════════════════════════ */}
+      <section className="bg-[#081426] py-5 sm:py-7 border-y border-brand-red/20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white/[0.02] border border-white/[0.06] p-4 sm:p-5"
+            style={{ clipPath: "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))" }}
+          >
+            <QuickSearchForm />
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
           CATEGORÍAS
       ══════════════════════════════════════════════════════ */}
       <section className="py-16 sm:py-24 bg-[#060E1C] relative overflow-hidden">
@@ -496,6 +496,42 @@ export default async function HomePage() {
         anticipoMax={parseInt(config.financing_anticipo_max || "10000000")}
         cuotaSliderMax={parseInt(config.financing_cuota_slider_max || "1500000")}
       />
+
+      {/* ══════════════════════════════════════════════════════
+          ENTREGÁ TU VEHÍCULO COMO PARTE DE PAGO
+      ══════════════════════════════════════════════════════ */}
+      <section className="bg-[#081426] py-12 sm:py-16 border-y border-brand-red/20 relative overflow-hidden">
+        <div className="absolute -top-24 right-10 w-72 h-72 bg-brand-red/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+            <div className="flex-1 text-center lg:text-left">
+              <div className="flex items-center gap-3 mb-3 justify-center lg:justify-start">
+                <div className="h-px w-8 sm:w-10 bg-brand-red" />
+                <span className="text-brand-red text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em]">
+                  Recibimos tu usado
+                </span>
+              </div>
+              <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white uppercase leading-none mb-3">
+                ¿Tenés un auto o moto?<br />
+                <span className="text-brand-red">Lo tomamos como parte de pago</span>
+              </h2>
+              <p className="text-white/45 text-sm sm:text-base max-w-xl mx-auto lg:mx-0">
+                Mandanos los datos de tu vehículo por WhatsApp y te lo cotizamos para que lo entregues como parte de pago de tu próximo auto o moto.
+              </p>
+            </div>
+            <a
+              href={`https://wa.me/${wa}?text=${encodeURIComponent("Hola! Tengo un vehículo para entregar como parte de pago y quiero cotizarlo. Les paso los datos:\n\n• Marca y modelo:\n• Año:\n• Kilometraje:\n• Estado general:")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#20c45e] text-white font-black text-sm sm:text-base px-8 sm:px-10 py-4 uppercase tracking-widest transition-all duration-200 hover:shadow-2xl hover:shadow-green-500/30 active:scale-95"
+              style={{ clipPath: "polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)" }}
+            >
+              <WhatsAppIcon size={18} />
+              Cotizá tu vehículo
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* ══════════════════════════════════════════════════════
           SERVICIOS
