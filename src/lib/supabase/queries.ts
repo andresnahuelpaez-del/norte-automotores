@@ -6,7 +6,7 @@ export async function getCars(filters?: {
   brand?: string;
   body_type?: string;
   is_featured?: boolean;
-  vehicle_type?: 'car' | 'moto';
+  vehicle_type?: 'car' | 'moto' | 'all';
   financing_available?: boolean;
   order_by?: 'created_at' | 'price_asc' | 'price_desc';
   limit?: number;
@@ -23,10 +23,10 @@ export async function getCars(filters?: {
   if (filters?.body_type) query = query.eq("body_type", filters.body_type);
   if (filters?.is_featured !== undefined) query = query.eq("is_featured", filters.is_featured);
   if (filters?.financing_available) query = query.eq("financing_available", true);
-  if (filters?.vehicle_type !== undefined) {
-    query = query.eq("vehicle_type", filters.vehicle_type);
-  } else {
+  if (filters?.vehicle_type === undefined) {
     query = query.eq("vehicle_type", "car");
+  } else if (filters.vehicle_type !== "all") {
+    query = query.eq("vehicle_type", filters.vehicle_type);
   }
 
   if (filters?.order_by === 'price_asc') {

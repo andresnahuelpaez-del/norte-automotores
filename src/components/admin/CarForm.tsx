@@ -38,6 +38,7 @@ export function CarForm({ car, defaultVehicleType = "car" }: Props) {
     engine_cc: car?.engine_cc || 0,
     description: car?.description || "",
     price: car?.price || 0,
+    currency: car?.currency || "ARS",
     show_price: car?.show_price ?? true,
     financing_available: car?.financing_available || false,
     financing_details: car?.financing_details || "",
@@ -367,8 +368,19 @@ export function CarForm({ car, defaultVehicleType = "car" }: Props) {
         <h2 className="font-display font-bold text-xl text-brand-dark uppercase mb-5">Precio y financiación</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="label">Precio (ARS)</label>
-            <input type="number" value={form.price} onChange={e => f("price", Number(e.target.value))} className="input" placeholder="0 = consultar precio" />
+            <label className="label">Precio</label>
+            <div className="flex gap-2">
+              <select
+                value={form.currency}
+                onChange={e => f("currency", e.target.value)}
+                className="input w-24 shrink-0"
+                aria-label="Moneda"
+              >
+                <option value="ARS">$ ARS</option>
+                <option value="USD">US$</option>
+              </select>
+              <input type="number" value={form.price} onChange={e => f("price", Number(e.target.value))} className="input flex-1" placeholder="0 = consultar precio" />
+            </div>
           </div>
           <div className="flex flex-col gap-3 pt-4">
             <label className="flex items-center gap-3 cursor-pointer">

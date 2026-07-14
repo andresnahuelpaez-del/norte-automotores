@@ -62,7 +62,7 @@ export default async function AdminMotosPage() {
                     </span>
                     {moto.is_featured && <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Destacado</span>}
                     {moto.show_price && moto.price ? (
-                      <span className="text-brand-red font-semibold text-xs">{formatPrice(moto.price)}</span>
+                      <span className="text-brand-red font-semibold text-xs">{formatPrice(moto.price, moto.currency || "ARS")}</span>
                     ) : null}
                   </div>
                 </div>
@@ -107,7 +107,7 @@ export default async function AdminMotosPage() {
                       <td className="px-4 py-3 text-brand-dark">{moto.year}</td>
                       <td className="px-4 py-3">
                         {moto.show_price && moto.price ? (
-                          <span className="text-brand-red font-semibold">{formatPrice(moto.price)}</span>
+                          <span className="text-brand-red font-semibold">{formatPrice(moto.price, moto.currency || "ARS")}</span>
                         ) : (
                           <span className="text-brand-gray">—</span>
                         )}

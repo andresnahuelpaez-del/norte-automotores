@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const car = await getCarBySlug(slug);
   if (!car) return { title: "Auto no encontrado" };
 
-  const priceStr = car.show_price && car.price ? `Precio: ${formatPrice(car.price)}.` : "Consultá el precio.";
+  const priceStr = car.show_price && car.price ? `Precio: ${formatPrice(car.price, car.currency || "ARS")}.` : "Consultá el precio.";
   const kmStr = car.mileage ? ` ${formatMileage(car.mileage)}.` : "";
   return {
     title: `${car.brand} ${car.model} ${car.year} en La Rioja | Norte Automotores`,
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "autos usados La Rioja",
     ],
     openGraph: {
-      title: `${car.brand} ${car.model} ${car.year}${car.show_price && car.price ? ` — ${formatPrice(car.price)}` : ""} | La Rioja`,
+      title: `${car.brand} ${car.model} ${car.year}${car.show_price && car.price ? ` — ${formatPrice(car.price, car.currency || "ARS")}` : ""} | La Rioja`,
       description: `${car.brand} ${car.model} ${car.year}${kmStr} en La Rioja. ${priceStr} Norte Automotores.`,
       images: car.images?.[0]
         ? [{ url: car.images[0], width: 1200, height: 630, alt: `${car.brand} ${car.model} ${car.year}` }]
@@ -104,7 +104,7 @@ export default async function AutoDetailPage({ params }: Props) {
               {/* Price */}
               <div className="my-5 py-4 border-y border-white/[0.08]">
                 {car!.show_price && car!.price ? (
-                  <span className="text-4xl font-bold text-brand-red">{formatPrice(car!.price)}</span>
+                  <span className="text-4xl font-bold text-brand-red">{formatPrice(car!.price, car!.currency || "ARS")}</span>
                 ) : (
                   <span className="text-xl text-white/40">Consultá el precio</span>
                 )}

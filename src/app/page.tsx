@@ -37,15 +37,17 @@ const ADDRESS = "Av. Coronel Felipe Varela 1776, La Rioja, Argentina";
 const GOOGLE_MAPS = "https://www.google.com/maps/search/Norte+Automotores+La+Rioja";
 
 export default async function HomePage() {
-  let featuredCars: Awaited<ReturnType<typeof getCars>> = [];
-  let featuredMotos: Awaited<ReturnType<typeof getCars>> = [];
+  let featured: Awaited<ReturnType<typeof getCars>> = [];
+  let latestCars: Awaited<ReturnType<typeof getCars>> = [];
+  let latestMotos: Awaited<ReturnType<typeof getCars>> = [];
   let financingCars: Awaited<ReturnType<typeof getCars>> = [];
   let config: Awaited<ReturnType<typeof getSiteConfig>>;
 
   try {
-    [featuredCars, featuredMotos, financingCars, config] = await Promise.all([
-      getCars({ is_featured: true, vehicle_type: "car", limit: 6 }),
-      getCars({ is_featured: true, vehicle_type: "moto", limit: 3 }),
+    [featured, latestCars, latestMotos, financingCars, config] = await Promise.all([
+      getCars({ is_featured: true, vehicle_type: "all", limit: 6 }),
+      getCars({ vehicle_type: "car", limit: 6 }),
+      getCars({ vehicle_type: "moto", limit: 3 }),
       getCars({ financing_available: true, vehicle_type: "car", limit: 100 }),
       getSiteConfig(),
     ]);
@@ -261,9 +263,9 @@ export default async function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          AUTOS DESTACADOS
+          DESTACADOS (autos + motos)
       ══════════════════════════════════════════════════════ */}
-      {featuredCars.length > 0 && (
+      {featured.length > 0 && (
         <section className="py-14 sm:py-24 bg-[#060E1C] relative overflow-hidden">
           {/* Speed lines */}
           <div className="absolute inset-0 pointer-events-none"
@@ -279,7 +281,7 @@ export default async function HomePage() {
                   </span>
                 </div>
                 <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-white uppercase leading-none">
-                  Autos destacados
+                  Destacados
                 </h2>
               </div>
               <Link
@@ -291,7 +293,44 @@ export default async function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-              {featuredCars.map((car, i) => (
+              {featured.map((car, i) => (
+                <FadeIn key={car.id} delay={i * 0.08} direction="up">
+                  <CarCard car={car} whatsappNumber={wa} />
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ══════════════════════════════════════════════════════
+          AUTOS (últimos ingresos)
+      ══════════════════════════════════════════════════════ */}
+      {latestCars.length > 0 && (
+        <section className="py-14 sm:py-24 bg-[#060E1C] relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="flex items-end justify-between mb-8 sm:mb-14">
+              <div>
+                <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                  <div className="w-10 h-[3px] bg-brand-red" />
+                  <span className="text-brand-red text-[10px] sm:text-[11px] font-black uppercase tracking-[0.35em] font-mono">
+                    Últimos ingresos
+                  </span>
+                </div>
+                <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-white uppercase leading-none">
+                  Autos
+                </h2>
+              </div>
+              <Link
+                href="/catalogo"
+                className="hidden sm:flex items-center gap-1.5 text-white/40 hover:text-brand-red text-sm font-bold uppercase tracking-wider transition-colors group font-mono"
+              >
+                Ver todos <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+              {latestCars.map((car, i) => (
                 <FadeIn key={car.id} delay={i * 0.08} direction="up">
                   <CarCard car={car} whatsappNumber={wa} />
                 </FadeIn>
@@ -335,10 +374,10 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          {featuredMotos.length > 0 ? (
+          {latestMotos.length > 0 ? (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-6 sm:mb-8">
-                {featuredMotos.map((moto) => (
+                {latestMotos.map((moto) => (
                   <CarCard key={moto.id} car={moto} whatsappNumber={wa} />
                 ))}
               </div>

@@ -194,7 +194,7 @@ export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
               className="bg-brand-red hover:bg-brand-red-dark text-white text-sm font-bold px-4 py-2.5 transition-all duration-200 hover:shadow-lg hover:shadow-brand-red/30 uppercase tracking-wide"
               style={{ clipPath: "polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%)" }}
             >
-              Ver auto
+              {car.vehicle_type === "moto" ? "Ver moto" : "Ver auto"}
             </Link>
             <a
               href={waUrl}

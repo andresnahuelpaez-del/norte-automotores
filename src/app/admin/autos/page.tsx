@@ -62,7 +62,7 @@ export default async function AdminAutosPage() {
                     </span>
                     {car.is_featured && <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Destacado</span>}
                     {car.show_price && car.price ? (
-                      <span className="text-brand-red font-semibold text-xs">{formatPrice(car.price)}</span>
+                      <span className="text-brand-red font-semibold text-xs">{formatPrice(car.price, car.currency || "ARS")}</span>
                     ) : null}
                   </div>
                 </div>
@@ -107,7 +107,7 @@ export default async function AdminAutosPage() {
                       <td className="px-4 py-3 text-brand-dark">{car.year}</td>
                       <td className="px-4 py-3">
                         {car.show_price && car.price ? (
-                          <span className="text-brand-red font-semibold">{formatPrice(car.price)}</span>
+                          <span className="text-brand-red font-semibold">{formatPrice(car.price, car.currency || "ARS")}</span>
                         ) : (
                           <span className="text-brand-gray">—</span>
                         )}
