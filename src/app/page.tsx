@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   ],
 };
 
-const WA = "3804796317";
+const WA = "5493804796317";
 const ADDRESS = "Av. Coronel Felipe Varela 1776, La Rioja, Argentina";
 const GOOGLE_MAPS = "https://www.google.com/maps/search/Norte+Automotores+La+Rioja";
 

@@ -2,7 +2,7 @@
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
 export function WhatsAppButton() {
-  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "3804796317";
+  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5493804796317";
   const url = `https://wa.me/${number}?text=${encodeURIComponent("Hola! Quiero consultar sobre sus vehículos.")}`;
 
   return (

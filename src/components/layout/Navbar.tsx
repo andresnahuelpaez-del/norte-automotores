@@ -14,7 +14,7 @@ const links = [
   { href: "/contacto", label: "Contacto" },
 ];
 
-const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "3804796317";
+const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5493804796317";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);

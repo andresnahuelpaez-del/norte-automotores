@@ -4,7 +4,7 @@ import { Phone, MapPin, Mail, Instagram, Clock, Star, ArrowRight } from "lucide-
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { createClient } from "@/lib/supabase/client";
 
-const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "3804796317";
+const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5493804796317";
 const ADDRESS = "Av. Coronel Felipe Varela 1776, La Rioja, Argentina";
 const GOOGLE_MAPS = "https://www.google.com/maps/search/Norte+Automotores+La+Rioja";
 const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJ46OBG9TXlpkRrYUqNwcnggY";

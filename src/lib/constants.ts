@@ -44,5 +44,5 @@ export const CONDITIONS = [
   { value: "new", label: "0km" },
 ];
 
-export const DEFAULT_WHATSAPP = "3804796317";
+export const DEFAULT_WHATSAPP = "5493804796317";
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://norteautomotores.com.ar";

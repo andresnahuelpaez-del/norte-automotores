@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 const TEXT_KEYS = [
-  { key: "whatsapp_number", label: "Número de WhatsApp", placeholder: "3804796317" },
+  { key: "whatsapp_number", label: "Número de WhatsApp", placeholder: "5493804796317" },
   { key: "address", label: "Dirección", placeholder: "Av. Coronel Felipe Varela 1776, La Rioja, Argentina" },
   { key: "phone", label: "Teléfono", placeholder: "+54 380 479-6317" },
   { key: "email", label: "Email", placeholder: "ventas@norteautomotores.com.ar" },

@@ -10,7 +10,7 @@ interface CarCardProps {
   whatsappNumber?: string;
 }
 
-export function CarCard({ car, whatsappNumber = "3804796317" }: CarCardProps) {
+export function CarCard({ car, whatsappNumber = "5493804796317" }: CarCardProps) {
   const fuelLabel: Record<string, string> = {
     nafta: "Nafta", diesel: "Diésel", electrico: "Eléctrico",
     hibrido: "Híbrido", gnc: "GNC",

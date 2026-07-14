@@ -71,7 +71,7 @@ export async function getSiteConfig(): Promise<SiteConfig> {
   const { data, error } = await supabase.from("site_config").select("*");
   if (error || !data) {
     return {
-      whatsapp_number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "3804796317",
+      whatsapp_number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5493804796317",
       show_prices_globally: "true",
       show_financing_globally: "true",
       hero_title: "Tu próximo auto te espera",

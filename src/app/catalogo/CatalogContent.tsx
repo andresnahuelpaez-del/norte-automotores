@@ -58,7 +58,7 @@ export async function CatalogContent({ searchParams = {} }: Props) {
   } catch (err) {
     console.error("[CatalogContent] Error fetching data:", err);
     config = {
-      whatsapp_number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "3804796317",
+      whatsapp_number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5493804796317",
       show_prices_globally: "true",
       show_financing_globally: "true",
       hero_title: "",

@@ -6,7 +6,7 @@ import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { formatPrice } from "@/lib/utils";
 
-const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "3804796317";
+const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5493804796317";
 
 // Coeficiente total por plazo (total pagado / monto financiado)
 const COEFICIENTES: Record<number, number> = {
