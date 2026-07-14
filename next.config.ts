@@ -5,6 +5,11 @@ const supabaseHostname = process.env.NEXT_PUBLIC_SUPABASE_URL
   : "izdmxlwtgatoypgwvtmq.supabase.co";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      { source: "/admin/login", destination: "/login", permanent: true },
+    ];
+  },
   images: {
     remotePatterns: [
       {
