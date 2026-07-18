@@ -34,7 +34,7 @@ export function Navbar() {
       {/* Topbar */}
       <div
         className={cn(
-          "border-b transition-all duration-400 bg-[#223A54]/90",
+          "border-b transition-all duration-400 bg-[#132C56]/90",
           scrolled
             ? "opacity-0 pointer-events-none border-transparent"
             : "opacity-100 border-white/[0.06]"
@@ -79,8 +79,8 @@ export function Navbar() {
         className={cn(
           "transition-all duration-500 relative",
           scrolled
-            ? "bg-[#223A54]/97 backdrop-blur-xl shadow-[0_2px_0_rgba(204,32,32,0.4)]"
-            : "bg-[#223A54]/80 backdrop-blur-sm"
+            ? "bg-[#132C56]/97 backdrop-blur-xl shadow-[0_2px_0_rgba(204,32,32,0.4)]"
+            : "bg-[#132C56]/80 backdrop-blur-sm"
         )}
       >
         {/* Carbon fiber bg subtle */}
@@ -167,7 +167,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="md:hidden bg-[#223A54]/99 backdrop-blur-xl border-t border-brand-red/30 overflow-hidden"
+            className="md:hidden bg-[#132C56]/99 backdrop-blur-xl border-t border-brand-red/30 overflow-hidden"
           >
             <div className="px-4 py-6 flex flex-col gap-4">
               {links.map((l, i) => (

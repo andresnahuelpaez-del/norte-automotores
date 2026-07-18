@@ -387,7 +387,7 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════════
           QUICK SEARCH
       ══════════════════════════════════════════════════════ */}
-      <section className="bg-[#223A54] py-6 sm:py-8 border-t border-brand-red/40">
+      <section className="bg-[#132C56] py-6 sm:py-8 border-t border-brand-red/40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white/[0.04] border border-white/10 p-4 sm:p-5"
             style={{ clipPath: "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))" }}
