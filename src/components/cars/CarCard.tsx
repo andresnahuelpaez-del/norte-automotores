@@ -24,7 +24,7 @@ export function CarCard({ car, whatsappNumber = "5493804796317" }: CarCardProps)
 
   return (
     <div
-      className="group relative bg-[#060E1C] overflow-hidden border border-white/[0.07] hover:border-brand-red/60 transition-colors duration-300 hover:shadow-2xl hover:shadow-brand-red/15 flex flex-col"
+      className="group relative bg-white overflow-hidden border border-[#173A5E]/15 hover:border-brand-red/60 transition-colors duration-300 hover:shadow-2xl hover:shadow-[#173A5E]/10 flex flex-col"
       style={{
         clipPath: "polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px))",
       }}
@@ -43,18 +43,12 @@ export function CarCard({ car, whatsappNumber = "5493804796317" }: CarCardProps)
               className="object-cover group-hover:scale-105 transition-transform duration-700"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0C1B32] via-[#0C1B32]/20 to-transparent" />
-            {/* Speed lines overlay */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{
-                background: "repeating-linear-gradient(80deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px)"
-              }}
-            />
+            {/* Gradient overlay sutil para legibilidad de badges */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
           </>
         ) : (
-          <div className="w-full h-full bg-[#081426] flex items-center justify-center carbon-fiber">
-            <span className="font-display text-white/15 text-xs uppercase tracking-[0.4em]">Sin imagen</span>
+          <div className="w-full h-full bg-[#EFF2F8] flex items-center justify-center">
+            <span className="font-display text-[#5B6B7D]/60 text-xs uppercase tracking-[0.4em]">Sin imagen</span>
           </div>
         )}
 
@@ -65,7 +59,7 @@ export function CarCard({ car, whatsappNumber = "5493804796317" }: CarCardProps)
               "text-[10px] font-black uppercase px-2.5 py-1 tracking-wider",
               car.condition === "new"
                 ? "bg-brand-red text-white"
-                : "bg-black/80 text-white/80 border border-white/10"
+                : "bg-white/90 text-[#173A5E] border border-[#173A5E]/20"
             )}
             style={{ clipPath: "polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%)" }}
           >
@@ -97,7 +91,7 @@ export function CarCard({ car, whatsappNumber = "5493804796317" }: CarCardProps)
 
         {/* Image count badge */}
         {car.images && car.images.length > 1 && (
-          <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm px-2 py-1 text-white/60 text-[10px] font-mono">
+          <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1 bg-black/60 backdrop-blur-sm px-2 py-1 text-white/80 text-[10px] font-mono">
             <Images size={9} />
             {car.images.length}
           </div>
@@ -105,28 +99,28 @@ export function CarCard({ car, whatsappNumber = "5493804796317" }: CarCardProps)
       </div>
 
       {/* Content */}
-      <div className="p-5 flex flex-col flex-1 border-t border-white/[0.05]">
+      <div className="p-5 flex flex-col flex-1 border-t border-[#173A5E]/15">
         {/* Brand + racing number accent */}
         <div className="flex items-center justify-between mb-1">
           <p className="text-brand-red text-[10px] font-black uppercase tracking-[0.3em]">
             {car.brand}
           </p>
-          <span className="font-display font-black text-white/5 text-4xl leading-none select-none absolute right-4 top-[calc(56.25%+12px)]">
+          <span className="font-display font-black text-[#173A5E]/5 text-4xl leading-none select-none absolute right-4 top-[calc(56.25%+12px)]">
             {car.year}
           </span>
         </div>
 
-        <h3 className="font-display font-extrabold text-xl text-white uppercase tracking-wide leading-tight mb-0.5">
+        <h3 className="font-display font-extrabold text-xl text-[#173A5E] uppercase tracking-wide leading-tight mb-0.5">
           {car.model}
           {car.version && (
-            <span className="font-normal text-white/30 text-sm ml-2 normal-case tracking-normal">
+            <span className="font-normal text-[#5B6B7D]/90 text-sm ml-2 normal-case tracking-normal">
               {car.version}
             </span>
           )}
         </h3>
 
         {/* Specs */}
-        <div className="flex items-center gap-3 text-[11px] text-white/40 mt-2 mb-4">
+        <div className="flex items-center gap-3 text-[11px] text-[#5B6B7D] mt-2 mb-4">
           {car.mileage != null && car.mileage > 0 && (
             <span className="flex items-center gap-1">
               <Gauge size={11} />
@@ -135,7 +129,7 @@ export function CarCard({ car, whatsappNumber = "5493804796317" }: CarCardProps)
           )}
           {car.transmission && (
             <>
-              <span className="w-px h-3 bg-white/10" />
+              <span className="w-px h-3 bg-[#173A5E]/15" />
               <span className="flex items-center gap-1">
                 <Settings size={11} />
                 {transLabel[car.transmission] ?? car.transmission}
@@ -144,14 +138,14 @@ export function CarCard({ car, whatsappNumber = "5493804796317" }: CarCardProps)
           )}
           {car.fuel_type && (
             <>
-              <span className="w-px h-3 bg-white/10" />
+              <span className="w-px h-3 bg-[#173A5E]/15" />
               <span>{fuelLabel[car.fuel_type] ?? car.fuel_type}</span>
             </>
           )}
         </div>
 
         {/* Racing divider */}
-        <div className="relative w-full h-px bg-white/[0.06] mb-4">
+        <div className="relative w-full h-px bg-[#EFF2F8] mb-4">
           <div className="absolute left-0 top-0 h-full w-10 bg-brand-red/60" />
         </div>
 
@@ -160,15 +154,15 @@ export function CarCard({ car, whatsappNumber = "5493804796317" }: CarCardProps)
           <div>
             {car.show_price && car.price ? (
               <div>
-                <p className="text-white/25 text-[9px] uppercase tracking-[0.25em] mb-0.5">Precio</p>
-                <span className="font-display font-extrabold text-xl text-white leading-none">
+                <p className="text-[#5B6B7D]/70 text-[9px] uppercase tracking-[0.25em] mb-0.5">Precio</p>
+                <span className="font-display font-extrabold text-xl text-[#173A5E] leading-none">
                   {formatPrice(car.price, car.currency || "ARS")}
                 </span>
               </div>
             ) : (
               <div>
-                <p className="text-white/25 text-[9px] uppercase tracking-[0.25em] mb-0.5">Precio</p>
-                <span className="text-sm text-white/50 font-mono">Consultar</span>
+                <p className="text-[#5B6B7D]/70 text-[9px] uppercase tracking-[0.25em] mb-0.5">Precio</p>
+                <span className="text-sm text-[#5B6B7D] font-mono">Consultar</span>
               </div>
             )}
           </div>

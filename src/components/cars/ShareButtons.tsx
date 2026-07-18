@@ -33,8 +33,8 @@ export function ShareButtons({ url, title, text }: Props) {
   useEffect(() => setCanNativeShare(!!navigator.share), []);
 
   return (
-    <div className="mt-5 pt-4 border-t border-white/[0.08]">
-      <p className="text-white/40 text-xs uppercase tracking-[0.2em] mb-3 flex items-center gap-1.5">
+    <div className="mt-5 pt-4 border-t border-[#173A5E]/15">
+      <p className="text-[#5B6B7D] text-xs uppercase tracking-[0.2em] mb-3 flex items-center gap-1.5">
         <Share2 size={12} /> Compartir
       </p>
       <div className="flex gap-2">
@@ -42,7 +42,7 @@ export function ShareButtons({ url, title, text }: Props) {
           href={waShare}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-1.5 bg-white/[0.05] hover:bg-[#25D366] border border-white/[0.1] hover:border-transparent text-white/70 hover:text-white text-xs font-bold py-2.5 transition-colors"
+          className="flex-1 flex items-center justify-center gap-1.5 bg-[#EFF2F8] hover:bg-[#25D366] border border-[#173A5E]/15 hover:border-transparent text-[#173A5E]/80 hover:text-white text-xs font-bold py-2.5 transition-colors"
           aria-label="Compartir por WhatsApp"
         >
           <WhatsAppIcon size={14} /> WhatsApp
@@ -51,7 +51,7 @@ export function ShareButtons({ url, title, text }: Props) {
           href={fbShare}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-1.5 bg-white/[0.05] hover:bg-[#1877F2] border border-white/[0.1] hover:border-transparent text-white/70 hover:text-white text-xs font-bold py-2.5 transition-colors"
+          className="flex-1 flex items-center justify-center gap-1.5 bg-[#EFF2F8] hover:bg-[#1877F2] border border-[#173A5E]/15 hover:border-transparent text-[#173A5E]/80 hover:text-white text-xs font-bold py-2.5 transition-colors"
           aria-label="Compartir en Facebook"
         >
           <Facebook size={14} /> Facebook
@@ -59,7 +59,7 @@ export function ShareButtons({ url, title, text }: Props) {
         <button
           type="button"
           onClick={canNativeShare ? nativeShare : copyLink}
-          className="flex-1 flex items-center justify-center gap-1.5 bg-white/[0.05] hover:bg-brand-red border border-white/[0.1] hover:border-transparent text-white/70 hover:text-white text-xs font-bold py-2.5 transition-colors"
+          className="flex-1 flex items-center justify-center gap-1.5 bg-[#EFF2F8] hover:bg-brand-red border border-[#173A5E]/15 hover:border-transparent text-[#173A5E]/80 hover:text-white text-xs font-bold py-2.5 transition-colors"
           aria-label={canNativeShare ? "Compartir" : "Copiar link"}
         >
           {copied ? (

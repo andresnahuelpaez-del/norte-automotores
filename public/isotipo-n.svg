@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="#173A5E">
+  <!-- Isotipo "N" de Norte Automotores (versión simplificada monocolor para marca de agua) -->
+  <!-- Trazo izquierdo de la N (itálico) -->
+  <path d="M140 560 L235 160 H330 L235 560 Z" />
+  <!-- Diagonal de la N -->
+  <path d="M240 160 L330 160 L505 490 L428 520 Z" />
+  <!-- Vástago de la flecha (45° arriba-derecha) -->
+  <path d="M352 332 L512 172 L548 208 L388 368 Z" />
+  <!-- Punta de la flecha -->
+  <path d="M612 108 L560 262 L458 160 Z" />
+  <!-- Trazo derecho corto (bajo la flecha) -->
+  <path d="M470 320 L500 250 L560 310 L520 480 L455 480 Z" opacity="0.85" />
+  <!-- Línea de velocidad inferior -->
+  <path d="M250 565 L565 465 L575 492 L262 592 Z" opacity="0.7" />
+</svg>

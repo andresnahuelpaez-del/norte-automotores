@@ -85,8 +85,8 @@ export async function CatalogContent({ searchParams = {} }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Results count + sort */}
       <div className="flex items-center justify-between mb-6">
-        <p className="text-white/50 text-sm font-medium flex items-baseline gap-2">
-          <span className="font-display font-extrabold text-2xl text-white leading-none">{cars.length}{hasMore ? "+" : ""}</span>
+        <p className="text-[#5B6B7D] text-sm font-medium flex items-baseline gap-2">
+          <span className="font-display font-extrabold text-2xl text-[#173A5E] leading-none">{cars.length}{hasMore ? "+" : ""}</span>
           <span>autos encontrados{pagina > 1 ? ` — página ${pagina}` : ""}</span>
           {(condicion || marca || tipo || financiacion) && (
             <Link
@@ -109,7 +109,7 @@ export async function CatalogContent({ searchParams = {} }: Props) {
               className={`px-3 py-1.5 rounded-none text-xs font-medium border transition-colors ${
                 (orden || "") === opt.value
                   ? "bg-brand-red text-white border-brand-red"
-                  : "bg-white/[0.03] text-white/50 border-white/[0.08] hover:border-brand-red hover:text-brand-red"
+                  : "bg-[#EFF2F8] text-[#5B6B7D] border-[#173A5E]/15 hover:border-brand-red hover:text-brand-red"
               }`}
             >
               {opt.label}
@@ -133,7 +133,7 @@ export async function CatalogContent({ searchParams = {} }: Props) {
               className={`px-4 py-2 rounded-full border text-sm font-medium transition-colors ${
                 isActive
                   ? "bg-brand-red text-white border-brand-red"
-                  : "border-white/[0.08] bg-white/[0.03] text-white/60 hover:border-brand-red hover:text-brand-red"
+                  : "border-[#173A5E]/15 bg-[#EFF2F8] text-[#5B6B7D] hover:border-brand-red hover:text-brand-red"
               }`}
             >
               {label}
@@ -143,21 +143,21 @@ export async function CatalogContent({ searchParams = {} }: Props) {
       </div>
 
       {/* Separator */}
-      <div className="relative w-full h-px bg-white/[0.05] mb-6">
+      <div className="relative w-full h-px bg-[#EFF2F8] mb-6">
         <div className="absolute left-0 top-0 h-full w-16 bg-brand-red/40" />
       </div>
 
       {/* Marca filter */}
       <div className="flex gap-2 mb-8 overflow-x-auto pb-1 scrollbar-none -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:pb-0">
-        <span className="text-xs text-white/40 self-center font-medium shrink-0">Marca:</span>
+        <span className="text-xs text-[#5B6B7D] self-center font-medium shrink-0">Marca:</span>
         {["", ...BRANDS.slice(0, 10)].map(b => (
           <Link
             key={b || "todas"}
             href={buildFilterUrl(activeFilters, { marca: b || undefined })}
             className={`px-3 py-1.5 rounded-full border text-xs font-medium transition-colors ${
               (marca || "") === b
-                ? "bg-white/[0.12] text-white border-white/30"
-                : "border-white/[0.08] bg-white/[0.03] text-white/60 hover:border-brand-red hover:text-brand-red"
+                ? "bg-[#173A5E] text-white border-[#173A5E]"
+                : "border-[#173A5E]/15 bg-[#EFF2F8] text-[#5B6B7D] hover:border-brand-red hover:text-brand-red"
             }`}
           >
             {b || "Todas"}
@@ -169,12 +169,12 @@ export async function CatalogContent({ searchParams = {} }: Props) {
       {cars.length === 0 ? (
         <div>
           {/* Mensaje sin resultados */}
-          <div className="bg-white/[0.03] rounded-none border border-white/[0.08] px-8 py-10 mb-10 text-center">
+          <div className="bg-[#EFF2F8] rounded-none border border-[#173A5E]/15 px-8 py-10 mb-10 text-center">
             <p className="text-2xl mb-2">🔍</p>
-            <h3 className="font-display font-bold text-xl text-white uppercase mb-1">
+            <h3 className="font-display font-bold text-xl text-[#173A5E] uppercase mb-1">
               Sin resultados para esa búsqueda
             </h3>
-            <p className="text-white/50 text-sm mb-4">
+            <p className="text-[#5B6B7D] text-sm mb-4">
               No encontramos vehículos con los filtros seleccionados, pero tenemos estas opciones que podrían interesarte.
             </p>
             <Link
@@ -189,9 +189,9 @@ export async function CatalogContent({ searchParams = {} }: Props) {
           {suggested.length > 0 && (
             <>
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-px flex-1 bg-white/[0.08]" />
-                <span className="text-xs font-bold text-white/40 uppercase tracking-widest px-2">Te recomendamos</span>
-                <div className="h-px flex-1 bg-white/[0.08]" />
+                <div className="h-px flex-1 bg-[#EFF2F8]" />
+                <span className="text-xs font-bold text-[#5B6B7D] uppercase tracking-widest px-2">Te recomendamos</span>
+                <div className="h-px flex-1 bg-[#EFF2F8]" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {suggested.map((car) => (
@@ -215,7 +215,7 @@ export async function CatalogContent({ searchParams = {} }: Props) {
               {pagina > 1 && (
                 <Link
                   href={buildFilterUrl(activeFilters, { pagina: pagina - 1 > 1 ? String(pagina - 1) : undefined })}
-                  className="px-6 py-3 border border-white/[0.15] hover:border-brand-red text-white font-bold text-sm uppercase tracking-wider transition-colors"
+                  className="px-6 py-3 border border-[#173A5E]/15 hover:border-brand-red text-[#173A5E] font-bold text-sm uppercase tracking-wider transition-colors"
                 >
                   ← Anterior
                 </Link>

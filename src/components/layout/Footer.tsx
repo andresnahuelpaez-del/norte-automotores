@@ -6,13 +6,13 @@ import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 const WA = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5493804796317";
 const IG = "https://instagram.com/norte.automotores";
 const FB = "https://facebook.com/share/177Lw7quNV/?mibextid=wwXlfr";
-const ADDRESS = "Av. Coronel Felipe Varela 1776, La Rioja, Argentina";
+const ADDRESS = "Av. Coronel Felipe Varela y Senador Rodolfo Blanco, La Rioja Capital";
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-[#060E1C] text-white overflow-hidden">
+    <footer className="relative bg-[#16293F] text-white overflow-hidden">
       {/* Racing stripe top */}
       <div className="h-[3px] bg-gradient-to-r from-brand-red via-brand-red/80 to-transparent" />
 
@@ -168,7 +168,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-white/15 text-xs font-mono border-t border-white/[0.04]">
-          <span>© {year} Norte Automotores — Todos los derechos reservados.</span>
+          <span>© {year} Grupo Norte SRL — Norte Automotores. Todos los derechos reservados.</span>
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 bg-brand-red/50" style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }} />
             La Rioja, Argentina

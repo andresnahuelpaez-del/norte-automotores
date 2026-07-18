@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { calcularCuota, fmtARS } from "./financiacion";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -36,11 +37,26 @@ export function buildWhatsAppUrl(phone: string, text: string): string {
 }
 
 export function buildCarWhatsAppUrl(
-  car: { brand: string; model: string; year: number; whatsapp_text?: string },
+  car: {
+    brand: string;
+    model: string;
+    year: number;
+    whatsapp_text?: string;
+    price?: number;
+    currency?: string;
+    financing_available?: boolean;
+    show_price?: boolean;
+  },
   whatsappNumber: string
 ): string {
-  const text =
-    car.whatsapp_text ||
-    `Hola! Me interesa el ${car.brand} ${car.model} ${car.year} que vi en su web. ¿Está disponible?`;
+  let planLine = "";
+  if (car.financing_available && car.show_price && car.price && (car.currency || "ARS") === "ARS") {
+    const { entregaReal, cuota } = calcularCuota(car.price, 12);
+    planLine = `\nVi el plan de financiación: entrega de ${fmtARS(entregaReal)} y 12 cuotas de ${fmtARS(cuota)}.`;
+  }
+
+  if (car.whatsapp_text) return buildWhatsAppUrl(whatsappNumber, car.whatsapp_text + planLine);
+
+  const text = `Hola! Me interesa el ${car.brand} ${car.model} ${car.year} que vi en su web.${planLine}\n¿Está disponible?`;
   return buildWhatsAppUrl(whatsappNumber, text);
 }

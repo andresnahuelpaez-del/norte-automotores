@@ -34,7 +34,7 @@ export function Navbar() {
       {/* Topbar */}
       <div
         className={cn(
-          "border-b transition-all duration-400 bg-[#081426]/90",
+          "border-b transition-all duration-400 bg-[#223A54]/90",
           scrolled
             ? "opacity-0 pointer-events-none border-transparent"
             : "opacity-100 border-white/[0.06]"
@@ -49,7 +49,7 @@ export function Navbar() {
           <div className="flex items-center gap-5">
             <span className="hidden sm:flex items-center gap-1.5 font-mono">
               <MapPin size={10} className="text-brand-red shrink-0" />
-              Av. Coronel Felipe Varela 1776, La Rioja
+              F. Varela y Sen. R. Blanco, La Rioja
             </span>
             <a
               href="tel:+543804796317"
@@ -79,8 +79,8 @@ export function Navbar() {
         className={cn(
           "transition-all duration-500 relative",
           scrolled
-            ? "bg-[#081426]/97 backdrop-blur-xl shadow-[0_2px_0_rgba(204,32,32,0.4)]"
-            : "bg-[#081426]/80 backdrop-blur-sm"
+            ? "bg-[#223A54]/97 backdrop-blur-xl shadow-[0_2px_0_rgba(204,32,32,0.4)]"
+            : "bg-[#223A54]/80 backdrop-blur-sm"
         )}
       >
         {/* Carbon fiber bg subtle */}
@@ -167,7 +167,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="md:hidden bg-[#081426]/99 backdrop-blur-xl border-t border-brand-red/30 overflow-hidden"
+            className="md:hidden bg-[#223A54]/99 backdrop-blur-xl border-t border-brand-red/30 overflow-hidden"
           >
             <div className="px-4 py-6 flex flex-col gap-4">
               {links.map((l, i) => (

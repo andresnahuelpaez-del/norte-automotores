@@ -9,7 +9,7 @@
 INSERT INTO site_config (key, value) VALUES
   ('whatsapp_number', '5493804796317'),
   ('phone', '+54 380 479-6317'),
-  ('address', 'Av. Coronel Felipe Varela 1776, La Rioja, Argentina'),
+  ('address', 'Av. Coronel Felipe Varela y Senador Rodolfo Blanco, La Rioja Capital'),
   ('email', 'ventas@norteautomotores.com.ar'),
   ('instagram', 'norte.automotores'),
   ('facebook', 'https://www.facebook.com/share/177Lw7quNV/?mibextid=wwXlfr'),

@@ -33,16 +33,16 @@ interface Props {
 export default async function CatalogoPage({ searchParams }: Props) {
   const params = await searchParams;
   return (
-    <div className="min-h-screen bg-[#060E1C]">
-      <div className="bg-[#060E1C] border-b border-white/[0.06] py-10">
+    <div className="min-h-screen bg-[#F7F9FB]">
+      <div className="bg-[#F7F9FB] border-b border-[#173A5E]/15 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-display font-extrabold text-4xl text-white uppercase">
+          <h1 className="font-display font-extrabold text-4xl text-[#173A5E] uppercase">
             Catálogo de Autos
           </h1>
-          <p className="text-white/50 mt-2">Encontrá el auto perfecto para vos</p>
+          <p className="text-[#5B6B7D] mt-2">Encontrá el auto perfecto para vos</p>
         </div>
       </div>
-      <Suspense fallback={<div className="text-center py-20 text-white/40">Cargando...</div>}>
+      <Suspense fallback={<div className="text-center py-20 text-[#5B6B7D]">Cargando...</div>}>
         <CatalogContent searchParams={params} />
       </Suspense>
     </div>

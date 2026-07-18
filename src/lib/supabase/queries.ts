@@ -76,7 +76,7 @@ export async function getSiteConfig(): Promise<SiteConfig> {
       show_financing_globally: "true",
       hero_title: "Tu próximo auto te espera",
       hero_subtitle: "Autos, motos y financiación propia. La Rioja.",
-      address: "Av. Coronel Felipe Varela 1776, La Rioja, Argentina",
+      address: "Av. Coronel Felipe Varela y Senador Rodolfo Blanco, La Rioja Capital",
       phone: "+54 380 479-6317",
       email: "ventas@norteautomotores.com.ar",
       instagram: "norte.automotores",

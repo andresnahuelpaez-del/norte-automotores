@@ -57,13 +57,13 @@ export default async function MotosPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="bg-brand-dark py-14">
+      <section className="bg-white border-b border-[#173A5E]/10 py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="text-brand-red text-xs sm:text-sm font-semibold uppercase tracking-widest">Stock disponible</span>
-          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white uppercase mt-2 mb-3">
+          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-[#173A5E] uppercase mt-2 mb-3">
             Motos Usadas
           </h1>
-          <p className="text-white/60 text-base sm:text-lg max-w-xl">
+          <p className="text-[#5B6B7D] text-base sm:text-lg max-w-xl">
             Honda, Yamaha, Bajaj, Royal Enfield y más. Todas revisadas y con documentación en orden.
           </p>
         </div>

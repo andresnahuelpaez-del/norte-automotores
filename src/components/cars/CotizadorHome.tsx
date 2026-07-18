@@ -5,12 +5,12 @@ import { ArrowRight, ArrowLeft, ChevronRight } from "lucide-react";
 import { CarCard } from "@/components/cars/CarCard";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { formatPrice } from "@/lib/utils";
+import { precioMaximo, PLANES } from "@/lib/financiacion";
 import type { Car } from "@/types";
 
 interface Props {
   cars: Car[];
   waNumber: string;
-  coeficientes: Record<number, number>;
   anticipoMin: number;
   anticipoMax: number;
   cuotaSliderMax: number;
@@ -18,9 +18,9 @@ interface Props {
 
 type Step = "form" | "results";
 
-export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, anticipoMax, cuotaSliderMax }: Props) {
-  const cuotasOpciones = Object.keys(coeficientes).map(Number).sort((a, b) => a - b);
-  const defaultCuotas = cuotasOpciones[Math.floor(cuotasOpciones.length / 2)] ?? 24;
+export function CotizadorHome({ cars, waNumber, anticipoMin, anticipoMax, cuotaSliderMax }: Props) {
+  const cuotasOpciones = [...PLANES];
+  const defaultCuotas = 12;
   const defaultAnticipo = Math.round((anticipoMin + anticipoMax * 0.15) / 100000) * 100000;
   const defaultCuota = Math.round(cuotaSliderMax * 0.15 / 25000) * 25000;
 
@@ -31,9 +31,8 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
   const [matchingCars, setMatchingCars] = useState<Car[]>([]);
   const [maxPrecio, setMaxPrecio] = useState(0);
 
-  // Odómetro animado
-  const coef = coeficientes[cuotas] ?? 2.0;
-  const vehicleMax = (cuotaMax * cuotas) / coef + anticipo;
+  // Odómetro animado — fórmula oficial: 5% mensual sobre saldo, entrega mínima 30%
+  const vehicleMax = precioMaximo(cuotaMax, cuotas, anticipo);
   const [displayPrice, setDisplayPrice] = useState(vehicleMax);
   useEffect(() => {
     const target = vehicleMax;
@@ -66,7 +65,7 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
   /* ─── FORM ─── */
   if (step === "form") {
     return (
-      <div id="cotizador" className="relative bg-[#0C1B32] py-14 sm:py-20 overflow-hidden">
+      <div id="cotizador" className="relative bg-white py-14 sm:py-20 overflow-hidden">
         {/* Speed lines */}
         <div className="absolute inset-0 pointer-events-none"
           style={{ backgroundImage: "repeating-linear-gradient(80deg, transparent, transparent 80px, rgba(255,255,255,0.010) 80px, rgba(255,255,255,0.010) 81px)" }}
@@ -85,18 +84,18 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
               </span>
               <div className="w-8 h-[3px] bg-brand-red" />
             </div>
-            <h2 className="font-display font-black text-4xl sm:text-5xl text-white uppercase leading-[0.9] mb-3">
+            <h2 className="font-display font-black text-4xl sm:text-5xl text-[#173A5E] uppercase leading-[0.9] mb-3">
               ¿A qué autos{" "}
               <span className="text-brand-red">podés acceder?</span>
             </h2>
-            <p className="text-white/35 text-sm font-mono tracking-wider">
+            <p className="text-[#5B6B7D] text-sm font-mono tracking-wider">
               Completá tu cotización y te mostramos los vehículos disponibles
             </p>
           </div>
 
           {/* Card */}
           <div
-            className="relative bg-[#081426] border border-white/[0.07] p-6 sm:p-8 space-y-8"
+            className="relative bg-white border border-[#173A5E]/15 p-6 sm:p-8 space-y-8"
             style={{ clipPath: "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))" }}
           >
             {/* Red top stripe */}
@@ -105,7 +104,7 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
             {/* Anticipo */}
             <div>
               <div className="flex items-baseline justify-between mb-3">
-                <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.35em] font-mono">
+                <label className="text-[10px] font-black text-[#5B6B7D] uppercase tracking-[0.35em] font-mono">
                   Anticipo disponible
                 </label>
                 <span className="font-display font-black text-2xl text-brand-red">{formatPrice(anticipo)}</span>
@@ -119,7 +118,7 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
                 onChange={(e) => setAnticipo(Number(e.target.value))}
                 className="w-full accent-brand-red h-1 cursor-pointer"
               />
-              <div className="flex justify-between text-[10px] text-white/20 mt-1.5 font-mono">
+              <div className="flex justify-between text-[10px] text-[#5B6B7D]/70 mt-1.5 font-mono">
                 <span>{formatPrice(anticipoMin)}</span>
                 <span>{formatPrice(anticipoMax)}</span>
               </div>
@@ -128,11 +127,11 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
             {/* Cuota máxima */}
             <div>
               <div className="flex items-baseline justify-between mb-3">
-                <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.35em] font-mono">
+                <label className="text-[10px] font-black text-[#5B6B7D] uppercase tracking-[0.35em] font-mono">
                   Cuota mensual máxima
                 </label>
                 <span className="font-display font-black text-2xl text-brand-red">
-                  {formatPrice(cuotaMax)}<span className="text-base text-white/40">/mes</span>
+                  {formatPrice(cuotaMax)}<span className="text-base text-[#5B6B7D]">/mes</span>
                 </span>
               </div>
               <input
@@ -144,7 +143,7 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
                 onChange={(e) => setCuotaMax(Number(e.target.value))}
                 className="w-full accent-brand-red h-1 cursor-pointer"
               />
-              <div className="flex justify-between text-[10px] text-white/20 mt-1.5 font-mono">
+              <div className="flex justify-between text-[10px] text-[#5B6B7D]/70 mt-1.5 font-mono">
                 <span>$ 50.000</span>
                 <span>{formatPrice(cuotaSliderMax)}</span>
               </div>
@@ -152,7 +151,7 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
 
             {/* Cuotas */}
             <div>
-              <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.35em] font-mono block mb-3">
+              <label className="text-[10px] font-black text-[#5B6B7D] uppercase tracking-[0.35em] font-mono block mb-3">
                 Cantidad de cuotas
               </label>
               <div className="flex gap-2 flex-wrap">
@@ -163,7 +162,7 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
                     className={`px-5 py-2.5 font-black text-sm font-mono transition-all duration-200 border ${
                       cuotas === n
                         ? "bg-brand-red border-brand-red text-white"
-                        : "border-white/[0.1] text-white/50 hover:border-brand-red/60 hover:text-white bg-transparent"
+                        : "border-[#173A5E]/15 text-[#5B6B7D] hover:border-brand-red/60 hover:text-[#173A5E] bg-transparent"
                     }`}
                     style={{ clipPath: "polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%)" }}
                   >
@@ -174,23 +173,23 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
             </div>
 
             {/* Divider */}
-            <div className="relative w-full h-px bg-white/[0.05]">
+            <div className="relative w-full h-px bg-[#EFF2F8]">
               <div className="absolute left-0 top-0 h-full w-12 bg-brand-red/50" />
             </div>
 
             {/* Preview resultado */}
             <div
-              className="pulse-glow bg-[#060E1C] border border-brand-red/20 p-5 sm:p-6"
+              className="pulse-glow bg-[#F7F9FB] border border-brand-red/20 p-5 sm:p-6"
               style={{ clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)" }}
             >
-              <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.35em] font-mono mb-2 text-center">
+              <p className="text-[10px] font-black text-[#5B6B7D]/90 uppercase tracking-[0.35em] font-mono mb-2 text-center">
                 Accedés a vehículos de hasta
               </p>
-              <p className="font-display font-black text-4xl sm:text-5xl text-white leading-none text-center tabular-nums">
+              <p className="font-display font-black text-4xl sm:text-5xl text-[#173A5E] leading-none text-center tabular-nums">
                 {formatPrice(displayPrice)}
               </p>
-              <p className="text-white/20 text-[10px] font-mono mt-3 text-center">
-                * Valores orientativos. Coeficiente {coef.toFixed(1)} para {cuotas} cuotas.
+              <p className="text-[#5B6B7D]/70 text-[10px] font-mono mt-3 text-center">
+                * Valores orientativos. Entrega mínima 30% · {cuotas} cuotas · sujeto a aprobación crediticia.
               </p>
             </div>
 
@@ -210,7 +209,7 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
 
   /* ─── RESULTS ─── */
   return (
-    <div id="cotizador" className="relative bg-[#0C1B32] py-14 sm:py-20 overflow-hidden">
+    <div id="cotizador" className="relative bg-white py-14 sm:py-20 overflow-hidden">
       {/* Speed lines */}
       <div className="absolute inset-0 pointer-events-none"
         style={{ backgroundImage: "repeating-linear-gradient(80deg, transparent, transparent 80px, rgba(255,255,255,0.010) 80px, rgba(255,255,255,0.010) 81px)" }}
@@ -221,7 +220,7 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
         {/* Back */}
         <button
           onClick={() => setStep("form")}
-          className="flex items-center gap-2 text-white/30 hover:text-brand-red text-[11px] font-black uppercase tracking-[0.3em] font-mono mb-8 transition-colors group"
+          className="flex items-center gap-2 text-[#5B6B7D]/90 hover:text-brand-red text-[11px] font-black uppercase tracking-[0.3em] font-mono mb-8 transition-colors group"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
           Modificar cotización
@@ -235,7 +234,7 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
               Tu cotización
             </span>
           </div>
-          <h2 className="font-display font-black text-4xl sm:text-5xl text-white uppercase leading-[0.9] mb-5">
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-[#173A5E] uppercase leading-[0.9] mb-5">
             {matchingCars.length > 0
               ? <>Autos a tu <span className="text-brand-red">alcance</span></>
               : <>Sin resultados <span className="text-brand-red">exactos</span></>}
@@ -251,11 +250,11 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
             ].map((item) => (
               <span
                 key={item.label}
-                className="inline-flex items-center gap-1.5 bg-white/[0.03] border border-white/[0.07] text-white/50 text-[10px] px-3 py-1.5 font-mono"
+                className="inline-flex items-center gap-1.5 bg-[#EFF2F8] border border-[#173A5E]/15 text-[#5B6B7D] text-[10px] px-3 py-1.5 font-mono"
                 style={{ clipPath: "polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%)" }}
               >
-                <span className="text-white/25">{item.label}:</span>
-                <span className="text-white font-black">{item.value}</span>
+                <span className="text-[#5B6B7D]/70">{item.label}:</span>
+                <span className="text-[#173A5E] font-black">{item.value}</span>
               </span>
             ))}
           </div>
@@ -285,12 +284,12 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
               className="w-16 h-16 bg-brand-red/[0.06] border border-brand-red/20 flex items-center justify-center mx-auto mb-5"
               style={{ clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)" }}
             >
-              <span className="text-2xl text-white/20 font-display font-black">?</span>
+              <span className="text-2xl text-[#5B6B7D]/70 font-display font-black">?</span>
             </div>
-            <p className="text-white/50 text-base font-mono mb-2">
+            <p className="text-[#5B6B7D] text-base font-mono mb-2">
               No encontramos autos publicados con esas condiciones.
             </p>
-            <p className="text-white/25 text-sm max-w-sm mx-auto font-mono">
+            <p className="text-[#5B6B7D]/70 text-sm max-w-sm mx-auto font-mono">
               Pero tenemos más modelos disponibles — consultanos y te armamos una propuesta.
             </p>
           </div>
@@ -298,7 +297,7 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
 
         {/* WA CTA */}
         <div
-          className="relative bg-[#081426] border border-brand-red/20 p-6 sm:p-8 text-center overflow-hidden"
+          className="relative bg-white border border-brand-red/20 p-6 sm:p-8 text-center overflow-hidden"
           style={{ clipPath: "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))" }}
         >
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-red via-brand-red/50 to-transparent" />
@@ -307,10 +306,10 @@ export function CotizadorHome({ cars, waNumber, coeficientes, anticipoMin, antic
           <span className="text-[10px] font-black text-brand-red uppercase tracking-[0.4em] font-mono block mb-3">
             — Más opciones —
           </span>
-          <h3 className="font-display font-black text-2xl sm:text-3xl text-white uppercase leading-none mb-2">
+          <h3 className="font-display font-black text-2xl sm:text-3xl text-[#173A5E] uppercase leading-none mb-2">
             ¿Querés más opciones?
           </h3>
-          <p className="text-white/35 text-sm font-mono mb-6 max-w-xs mx-auto tracking-wider">
+          <p className="text-[#5B6B7D] text-sm font-mono mb-6 max-w-xs mx-auto tracking-wider">
             Tenemos modelos que no están publicados. Consultanos.
           </p>
           <a

@@ -17,7 +17,7 @@ export function ImageSlider({ images = [], video_url, alt }: Props) {
   if (slides.length === 0) {
     return (
       <div className="aspect-video rounded-none bg-brand-dark flex items-center justify-center shadow-lg">
-        <span className="text-white/30 font-display text-xl">Sin fotos</span>
+        <span className="text-white/40 font-display text-xl">Sin fotos</span>
       </div>
     );
   }
@@ -44,7 +44,7 @@ export function ImageSlider({ images = [], video_url, alt }: Props) {
               href={video_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-3 text-white/70 hover:text-white transition-colors"
+              className="flex flex-col items-center gap-3 text-white/80 hover:text-white transition-colors"
             >
               <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-xl">
                 <Play size={28} fill="white" className="text-white ml-1" />

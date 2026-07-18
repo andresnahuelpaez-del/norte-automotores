@@ -3,12 +3,12 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Phone, Calendar, Gauge, Settings, Droplets, Car, DoorOpen, CheckCircle2, Share2, ArrowLeft } from "lucide-react";
-import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { getCarBySlug, getCars, getSiteConfig, incrementCarViews } from "@/lib/supabase/queries";
-import { formatPrice, formatMileage, buildCarWhatsAppUrl } from "@/lib/utils";
+import { formatPrice, formatMileage } from "@/lib/utils";
 import { CarCard } from "@/components/cars/CarCard";
 import { ImageSlider } from "@/components/cars/ImageSlider";
 import { ShareButtons } from "@/components/cars/ShareButtons";
+import { FinanciacionAuto } from "@/components/cars/FinanciacionAuto";
 import { SITE_URL } from "@/lib/constants";
 
 interface Props {
@@ -60,15 +60,13 @@ export default async function AutoDetailPage({ params }: Props) {
     notFound();
   }
 
-  const waUrl = buildCarWhatsAppUrl(car!, config.whatsapp_number);
-  const mainImage = car!.images?.[0];
 
   return (
-    <div className="min-h-screen bg-[#060E1C]">
+    <div className="min-h-screen bg-[#F7F9FB]">
       {/* Breadcrumb */}
-      <div className="bg-[#060E1C] border-b border-white/[0.06] py-3">
+      <div className="bg-[#F7F9FB] border-b border-[#173A5E]/15 py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/catalogo" className="flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors">
+          <Link href="/catalogo" className="flex items-center gap-2 text-[#5B6B7D] hover:text-brand-red text-sm transition-colors">
             <ArrowLeft size={16} />
             Volver al catálogo
           </Link>
@@ -88,51 +86,33 @@ export default async function AutoDetailPage({ params }: Props) {
 
           {/* Info panel — 2/5 */}
           <div className="lg:col-span-2">
-            <div className="bg-[#111] rounded-none border border-white/[0.08] p-6 lg:sticky lg:top-24">
+            <div className="bg-white rounded-none border border-[#173A5E]/15 p-6 lg:sticky lg:top-24">
               {/* Condition badge */}
               <span className={`inline-block text-xs font-bold uppercase px-2 py-1 rounded-md mb-3 ${
-                car!.condition === "new" ? "bg-brand-red text-white" : "bg-white/[0.1] text-white/80"
+                car!.condition === "new" ? "bg-brand-red text-white" : "bg-[#EFF2F8] text-[#173A5E]/85"
               }`}>
                 {car!.condition === "new" ? "0km" : "Usado"}
               </span>
 
-              <h1 className="font-display font-extrabold text-3xl text-white uppercase leading-tight">
+              <h1 className="font-display font-extrabold text-3xl text-[#173A5E] uppercase leading-tight">
                 {car!.brand} {car!.model}
               </h1>
               {car!.version && (
-                <p className="text-white/50 font-medium mt-1">{car!.version} · {car!.year}</p>
+                <p className="text-[#5B6B7D] font-medium mt-1">{car!.version} · {car!.year}</p>
               )}
 
               {/* Price */}
-              <div className="my-5 py-4 border-y border-white/[0.08]">
+              <div className="my-5 py-4 border-y border-[#173A5E]/15">
                 {car!.show_price && car!.price ? (
                   <span className="text-4xl font-bold text-brand-red">{formatPrice(car!.price, car!.currency || "ARS")}</span>
                 ) : (
-                  <span className="text-xl text-white/40">Consultá el precio</span>
-                )}
-                {car!.financing_available && (
-                  <div className="mt-2">
-                    <span className="inline-block bg-green-500/20 text-green-400 text-xs font-bold uppercase px-2 py-1 rounded-md">
-                      💳 Financiación disponible
-                    </span>
-                    {car!.financing_details && (
-                      <p className="text-sm text-white/40 mt-1">{car!.financing_details}</p>
-                    )}
-                  </div>
+                  <span className="text-xl text-[#5B6B7D]">Consultá el precio</span>
                 )}
               </div>
 
-              {/* CTA buttons */}
+              {/* Financiación + CTA buttons */}
               <div className="flex flex-col gap-3">
-                <a
-                  href={waUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20c45e] text-white font-bold py-3.5 rounded-none transition-colors"
-                >
-                  <WhatsAppIcon size={20} />
-                  Consultar por WhatsApp
-                </a>
+                <FinanciacionAuto car={car!} whatsappNumber={config.whatsapp_number} />
                 <a
                   href={`tel:${config.phone}`}
                   className="flex items-center justify-center gap-2 border-2 border-brand-red text-brand-red hover:bg-brand-red hover:text-white font-bold py-3 rounded-none transition-colors"
@@ -158,11 +138,11 @@ export default async function AutoDetailPage({ params }: Props) {
                   { icon: Car, label: "Carrocería", value: car!.body_type || "—" },
                   { icon: DoorOpen, label: "Puertas", value: car!.doors || "—" },
                 ].map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="flex items-center gap-2 bg-white/[0.05] rounded-none p-2">
+                  <div key={label} className="flex items-center gap-2 bg-[#EFF2F8] rounded-none p-2">
                     <Icon size={14} className="text-brand-red shrink-0" />
                     <div>
-                      <p className="text-white/40 text-xs">{label}</p>
-                      <p className="text-white font-semibold capitalize">{String(value)}</p>
+                      <p className="text-[#5B6B7D] text-xs">{label}</p>
+                      <p className="text-[#173A5E] font-semibold capitalize">{String(value)}</p>
                     </div>
                   </div>
                 ))}
@@ -174,11 +154,11 @@ export default async function AutoDetailPage({ params }: Props) {
         {/* Features & Description */}
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
           {car!.features && car!.features.length > 0 && (
-            <div className="bg-[#111] rounded-none border border-white/[0.08] p-6">
-              <h2 className="font-display font-bold text-2xl text-white uppercase mb-5">Equipamiento</h2>
+            <div className="bg-white rounded-none border border-[#173A5E]/15 p-6">
+              <h2 className="font-display font-bold text-2xl text-[#173A5E] uppercase mb-5">Equipamiento</h2>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {car!.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-white/80">
+                  <li key={f} className="flex items-center gap-2 text-sm text-[#173A5E]/85">
                     <CheckCircle2 size={16} className="text-brand-red shrink-0" />
                     {f}
                   </li>
@@ -188,9 +168,9 @@ export default async function AutoDetailPage({ params }: Props) {
           )}
 
           {car!.description && (
-            <div className="bg-[#111] rounded-none border border-white/[0.08] p-6">
-              <h2 className="font-display font-bold text-2xl text-white uppercase mb-5">Descripción</h2>
-              <p className="text-white/50 text-sm leading-relaxed whitespace-pre-line">{car!.description}</p>
+            <div className="bg-white rounded-none border border-[#173A5E]/15 p-6">
+              <h2 className="font-display font-bold text-2xl text-[#173A5E] uppercase mb-5">Descripción</h2>
+              <p className="text-[#5B6B7D] text-sm leading-relaxed whitespace-pre-line">{car!.description}</p>
             </div>
           )}
         </div>
@@ -198,7 +178,7 @@ export default async function AutoDetailPage({ params }: Props) {
         {/* Related cars */}
         {related && related.length > 0 && (
           <div className="mt-14">
-            <h2 className="font-display font-extrabold text-3xl text-white uppercase mb-6">
+            <h2 className="font-display font-extrabold text-3xl text-[#173A5E] uppercase mb-6">
               También te puede interesar
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
