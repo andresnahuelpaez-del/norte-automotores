@@ -64,9 +64,9 @@ export default async function AutoDetailPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-[#F7F9FB]">
       {/* Breadcrumb */}
-      <div className="bg-[#F7F9FB] border-b border-[#173A5E]/15 py-3">
+      <div className="bg-[#16293F] border-b-2 border-brand-red/60 py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/catalogo" className="flex items-center gap-2 text-[#5B6B7D] hover:text-brand-red text-sm transition-colors">
+          <Link href="/catalogo" className="flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors">
             <ArrowLeft size={16} />
             Volver al catálogo
           </Link>
@@ -75,34 +75,65 @@ export default async function AutoDetailPage({ params }: Props) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="lg:grid lg:grid-cols-5 lg:gap-10">
-          {/* Gallery — 3/5 */}
-          <div className="lg:col-span-3 mb-6 lg:mb-0">
+          {/* Gallery + descripción + equipamiento — 3/5 */}
+          <div className="lg:col-span-3 mb-6 lg:mb-0 space-y-6">
             <ImageSlider
               images={car!.images || []}
               video_url={car!.video_url}
               alt={`${car!.brand} ${car!.model} ${car!.year}`}
             />
+
+            {car!.description && (
+              <div className="relative bg-white rounded-none border border-[#173A5E]/15 p-6">
+                <div className="absolute top-0 left-0 w-16 h-[3px] bg-brand-red" />
+                <h2 className="font-display font-bold text-2xl text-[#173A5E] uppercase mb-4">Descripción</h2>
+                <p className="text-[#5B6B7D] text-sm leading-relaxed whitespace-pre-line">{car!.description}</p>
+              </div>
+            )}
+
+            {car!.features && car!.features.length > 0 && (
+              <div className="relative bg-[#16293F] rounded-none p-6 overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/isotipo-n.svg" alt="" aria-hidden="true"
+                  className="absolute pointer-events-none select-none opacity-[0.04] -rotate-12 w-[340px] max-w-none -right-16 -bottom-16 brightness-0 invert"
+                />
+                <div className="absolute top-0 left-0 w-16 h-[3px] bg-brand-red" />
+                <h2 className="relative font-display font-bold text-2xl text-white uppercase mb-4">Equipamiento</h2>
+                <ul className="relative grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {car!.features.map((f) => (
+                    <li key={f} className="flex items-center gap-2 text-sm text-white/85">
+                      <CheckCircle2 size={16} className="text-brand-red shrink-0" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           {/* Info panel — 2/5 */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-none border border-[#173A5E]/15 p-6 lg:sticky lg:top-24">
-              {/* Condition badge */}
-              <span className={`inline-block text-xs font-bold uppercase px-2 py-1 rounded-md mb-3 ${
-                car!.condition === "new" ? "bg-brand-red text-white" : "bg-[#EFF2F8] text-[#173A5E]/85"
-              }`}>
-                {car!.condition === "new" ? "0km" : "Usado"}
-              </span>
+            <div className="relative bg-white rounded-none border border-[#173A5E]/15 overflow-hidden lg:sticky lg:top-24">
+              {/* Cabecera navy del panel */}
+              <div className="relative bg-[#16293F] px-6 pt-5 pb-4">
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-brand-red" />
+                <span className={`inline-block text-xs font-bold uppercase px-2 py-1 rounded-md mb-3 ${
+                  car!.condition === "new" ? "bg-brand-red text-white" : "bg-white/10 text-white/85"
+                }`}>
+                  {car!.condition === "new" ? "0km" : "Usado"}
+                </span>
 
-              <h1 className="font-display font-extrabold text-3xl text-[#173A5E] uppercase leading-tight">
-                {car!.brand} {car!.model}
-              </h1>
-              {car!.version && (
-                <p className="text-[#5B6B7D] font-medium mt-1">{car!.version} · {car!.year}</p>
-              )}
+                <h1 className="font-display font-extrabold text-3xl text-white uppercase leading-tight">
+                  {car!.brand} {car!.model}
+                </h1>
+                {car!.version && (
+                  <p className="text-white/60 font-medium mt-1">{car!.version} · {car!.year}</p>
+                )}
+              </div>
 
+              <div className="p-6">
               {/* Price */}
-              <div className="my-5 py-4 border-y border-[#173A5E]/15">
+              <div className="mb-5 pb-4 border-b border-[#173A5E]/15">
                 {car!.show_price && car!.price ? (
                   <span className="text-4xl font-bold text-brand-red">{formatPrice(car!.price, car!.currency || "ARS")}</span>
                 ) : (
@@ -147,37 +178,20 @@ export default async function AutoDetailPage({ params }: Props) {
                   </div>
                 ))}
               </div>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Features & Description */}
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {car!.features && car!.features.length > 0 && (
-            <div className="bg-white rounded-none border border-[#173A5E]/15 p-6">
-              <h2 className="font-display font-bold text-2xl text-[#173A5E] uppercase mb-5">Equipamiento</h2>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {car!.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-[#173A5E]/85">
-                    <CheckCircle2 size={16} className="text-brand-red shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {car!.description && (
-            <div className="bg-white rounded-none border border-[#173A5E]/15 p-6">
-              <h2 className="font-display font-bold text-2xl text-[#173A5E] uppercase mb-5">Descripción</h2>
-              <p className="text-[#5B6B7D] text-sm leading-relaxed whitespace-pre-line">{car!.description}</p>
-            </div>
-          )}
         </div>
 
         {/* Related cars */}
         {related && related.length > 0 && (
           <div className="mt-14">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-[3px] bg-brand-red" />
+              <span className="text-brand-red text-[10px] font-black uppercase tracking-[0.35em]">
+                Seguí mirando
+              </span>
+            </div>
             <h2 className="font-display font-extrabold text-3xl text-[#173A5E] uppercase mb-6">
               También te puede interesar
             </h2>
