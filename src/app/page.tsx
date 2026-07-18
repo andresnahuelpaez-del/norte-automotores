@@ -79,16 +79,7 @@ export default async function HomePage() {
       <section className="relative overflow-hidden bg-[#F7F9FB] -mt-[108px] pt-[108px]">
 
         {/* ── MOBILE ── */}
-        <div className="relative min-h-[92dvh] lg:hidden overflow-hidden flex flex-col justify-center px-5 pt-[130px] pb-12 bg-white">
-
-          {/* Marca de agua N */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/isotipo-n.svg"
-            alt=""
-            aria-hidden="true"
-            className="absolute pointer-events-none select-none opacity-[0.05] -rotate-12 w-[480px] max-w-none -right-28 top-1/2 -translate-y-1/2"
-          />
+        <div className="relative lg:hidden overflow-hidden flex flex-col justify-center px-5 pt-[130px] pb-12 bg-white">
 
           <div className="relative">
             {/* Racing tag */}
@@ -147,10 +138,10 @@ export default async function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#132C56]/60 to-transparent" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/isotipo-n.svg"
+                src="/norte-logo.PNG"
                 alt=""
                 aria-hidden="true"
-                className="absolute pointer-events-none select-none opacity-[0.12] -rotate-12 w-[200px] max-w-none -right-10 -bottom-10 brightness-0 invert"
+                className="absolute pointer-events-none select-none mix-blend-screen opacity-90 w-[130px] right-3 bottom-2"
               />
             </div>
 
@@ -192,13 +183,13 @@ export default async function HomePage() {
               style={{ objectPosition: "center 30%" }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#132C56]/70 via-transparent to-[#132C56]/40" />
-            {/* Marca de agua N en blanco sobre el panel */}
+            {/* Logo real — su fondo navy se funde con el panel via blend screen */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/isotipo-n.svg"
+              src="/norte-logo.PNG"
               alt=""
               aria-hidden="true"
-              className="absolute pointer-events-none select-none opacity-[0.10] -rotate-12 w-[560px] max-w-none right-[-60px] top-1/2 -translate-y-1/2 brightness-0 invert"
+              className="absolute pointer-events-none select-none mix-blend-screen opacity-90 w-[400px] max-w-none right-16 top-1/2 -translate-y-1/2 drop-shadow-2xl"
             />
           </div>
 
