@@ -132,6 +132,28 @@ export default async function HomePage() {
               Cotizá tu financiamiento
             </a>
 
+            {/* Franja foto del local en duotono azul */}
+            <div
+              className="relative h-40 mb-7 overflow-hidden bg-[#132C56] border-t-2 border-brand-red"
+              style={{ clipPath: "polygon(0 0, 100% 6%, 100% 100%, 0 100%)" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/local.jpg"
+                alt="Showroom de Norte Automotores"
+                className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-45"
+                style={{ objectPosition: "center 30%" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#132C56]/60 to-transparent" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/isotipo-n.svg"
+                alt=""
+                aria-hidden="true"
+                className="absolute pointer-events-none select-none opacity-[0.12] -rotate-12 w-[200px] max-w-none -right-10 -bottom-10 brightness-0 invert"
+              />
+            </div>
+
             {/* Stats */}
             <div className="flex pt-5 border-t border-brand-red/20">
               {[
@@ -149,18 +171,38 @@ export default async function HomePage() {
         </div>
 
         {/* ── DESKTOP ── */}
-        <div className="hidden lg:block relative min-h-[88dvh] bg-white">
+        <div className="hidden lg:block relative min-h-[88dvh] bg-white overflow-hidden">
 
-          {/* Marca de agua N — grande, diagonal, detrás del contenido */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/isotipo-n.svg"
-            alt=""
-            aria-hidden="true"
-            className="absolute pointer-events-none select-none opacity-[0.05] -rotate-12 w-[820px] max-w-none right-[-100px] top-1/2 -translate-y-1/2"
+          {/* Filo rojo del corte diagonal */}
+          <div
+            className="absolute top-0 right-0 w-[45%] h-full bg-brand-red"
+            style={{ clipPath: "polygon(128px 0, 150px 0, 22px 100%, 0 100%)" }}
           />
+          {/* Panel derecho — azul del logo con la foto del local en duotono */}
+          <div
+            className="absolute top-0 right-0 w-[45%] h-full bg-[#132C56]"
+            style={{ clipPath: "polygon(150px 0, 100% 0, 100% 100%, 22px 100%)" }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/local.jpg"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40"
+              style={{ objectPosition: "center 30%" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#132C56]/70 via-transparent to-[#132C56]/40" />
+            {/* Marca de agua N en blanco sobre el panel */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/isotipo-n.svg"
+              alt=""
+              aria-hidden="true"
+              className="absolute pointer-events-none select-none opacity-[0.10] -rotate-12 w-[560px] max-w-none right-[-60px] top-1/2 -translate-y-1/2 brightness-0 invert"
+            />
+          </div>
 
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 flex items-center min-h-[88dvh] pt-[108px] pb-16">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 flex items-center min-h-[88dvh] pt-[108px] pb-16">
             <div className="max-w-2xl">
 
               {/* Racing tag */}
