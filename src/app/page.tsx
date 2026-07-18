@@ -132,17 +132,10 @@ export default async function HomePage() {
               <img
                 src="/local.jpg"
                 alt="Showroom de Norte Automotores"
-                className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-45"
+                className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-60"
                 style={{ objectPosition: "center 30%" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#132C56]/60 to-transparent" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/norte-logo.PNG"
-                alt=""
-                aria-hidden="true"
-                className="absolute pointer-events-none select-none mix-blend-screen opacity-90 w-[130px] right-3 bottom-2"
-              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#132C56]/50 to-transparent" />
             </div>
 
             {/* Stats */}
@@ -179,18 +172,10 @@ export default async function HomePage() {
               src="/local.jpg"
               alt=""
               aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40"
+              className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-55"
               style={{ objectPosition: "center 30%" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#132C56]/70 via-transparent to-[#132C56]/40" />
-            {/* Logo real — su fondo navy se funde con el panel via blend screen */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/norte-logo.PNG"
-              alt=""
-              aria-hidden="true"
-              className="absolute pointer-events-none select-none mix-blend-screen opacity-90 w-[400px] max-w-none right-16 top-1/2 -translate-y-1/2 drop-shadow-2xl"
-            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#132C56]/60 via-transparent to-[#132C56]/30" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 flex items-center min-h-[88dvh] pt-[108px] pb-16">
