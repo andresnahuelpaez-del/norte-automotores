@@ -65,7 +65,7 @@ export function CotizadorHome({ cars, waNumber, anticipoMin, anticipoMax, cuotaS
   /* ─── FORM ─── */
   if (step === "form") {
     return (
-      <div id="cotizador" className="relative bg-white py-14 sm:py-20 overflow-hidden">
+      <div id="cotizador" className="relative bg-[#16293F] py-14 sm:py-20 overflow-hidden">
         {/* Speed lines */}
         <div className="absolute inset-0 pointer-events-none"
           style={{ backgroundImage: "repeating-linear-gradient(80deg, transparent, transparent 80px, rgba(255,255,255,0.010) 80px, rgba(255,255,255,0.010) 81px)" }}
@@ -84,11 +84,11 @@ export function CotizadorHome({ cars, waNumber, anticipoMin, anticipoMax, cuotaS
               </span>
               <div className="w-8 h-[3px] bg-brand-red" />
             </div>
-            <h2 className="font-display font-black text-4xl sm:text-5xl text-[#173A5E] uppercase leading-[0.9] mb-3">
+            <h2 className="font-display font-black text-4xl sm:text-5xl text-white uppercase leading-[0.9] mb-3">
               ¿A qué autos{" "}
               <span className="text-brand-red">podés acceder?</span>
             </h2>
-            <p className="text-[#5B6B7D] text-sm font-mono tracking-wider">
+            <p className="text-white/50 text-sm font-mono tracking-wider">
               Completá tu cotización y te mostramos los vehículos disponibles
             </p>
           </div>
@@ -209,7 +209,7 @@ export function CotizadorHome({ cars, waNumber, anticipoMin, anticipoMax, cuotaS
 
   /* ─── RESULTS ─── */
   return (
-    <div id="cotizador" className="relative bg-white py-14 sm:py-20 overflow-hidden">
+    <div id="cotizador" className="relative bg-[#16293F] py-14 sm:py-20 overflow-hidden">
       {/* Speed lines */}
       <div className="absolute inset-0 pointer-events-none"
         style={{ backgroundImage: "repeating-linear-gradient(80deg, transparent, transparent 80px, rgba(255,255,255,0.010) 80px, rgba(255,255,255,0.010) 81px)" }}
@@ -220,7 +220,7 @@ export function CotizadorHome({ cars, waNumber, anticipoMin, anticipoMax, cuotaS
         {/* Back */}
         <button
           onClick={() => setStep("form")}
-          className="flex items-center gap-2 text-[#5B6B7D]/90 hover:text-brand-red text-[11px] font-black uppercase tracking-[0.3em] font-mono mb-8 transition-colors group"
+          className="flex items-center gap-2 text-white/50 hover:text-brand-red text-[11px] font-black uppercase tracking-[0.3em] font-mono mb-8 transition-colors group"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
           Modificar cotización
@@ -234,7 +234,7 @@ export function CotizadorHome({ cars, waNumber, anticipoMin, anticipoMax, cuotaS
               Tu cotización
             </span>
           </div>
-          <h2 className="font-display font-black text-4xl sm:text-5xl text-[#173A5E] uppercase leading-[0.9] mb-5">
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-white uppercase leading-[0.9] mb-5">
             {matchingCars.length > 0
               ? <>Autos a tu <span className="text-brand-red">alcance</span></>
               : <>Sin resultados <span className="text-brand-red">exactos</span></>}
@@ -284,12 +284,12 @@ export function CotizadorHome({ cars, waNumber, anticipoMin, anticipoMax, cuotaS
               className="w-16 h-16 bg-brand-red/[0.06] border border-brand-red/20 flex items-center justify-center mx-auto mb-5"
               style={{ clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)" }}
             >
-              <span className="text-2xl text-[#5B6B7D]/70 font-display font-black">?</span>
+              <span className="text-2xl text-white/40 font-display font-black">?</span>
             </div>
-            <p className="text-[#5B6B7D] text-base font-mono mb-2">
+            <p className="text-white/60 text-base font-mono mb-2">
               No encontramos autos publicados con esas condiciones.
             </p>
-            <p className="text-[#5B6B7D]/70 text-sm max-w-sm mx-auto font-mono">
+            <p className="text-white/40 text-sm max-w-sm mx-auto font-mono">
               Pero tenemos más modelos disponibles — consultanos y te armamos una propuesta.
             </p>
           </div>

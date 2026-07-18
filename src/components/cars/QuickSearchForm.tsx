@@ -1,6 +1,6 @@
 "use client";
 
-export function QuickSearchForm() {
+export function QuickSearchForm({ labelClassName = "text-[#5B6B7D]/90" }: { labelClassName?: string }) {
   return (
     <form
       action="/catalogo"
@@ -9,7 +9,7 @@ export function QuickSearchForm() {
       className="grid grid-cols-2 sm:flex sm:flex-row gap-3 items-end"
     >
       <div className="col-span-1">
-        <label className="text-[10px] font-bold text-[#5B6B7D]/90 uppercase tracking-[0.2em] mb-2 block">
+        <label className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 block ${labelClassName}`}>
           Condición
         </label>
         <select
@@ -24,7 +24,7 @@ export function QuickSearchForm() {
       </div>
 
       <div className="col-span-1">
-        <label className="text-[10px] font-bold text-[#5B6B7D]/90 uppercase tracking-[0.2em] mb-2 block">
+        <label className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 block ${labelClassName}`}>
           Marca
         </label>
         <select
@@ -40,7 +40,7 @@ export function QuickSearchForm() {
       </div>
 
       <div className="col-span-1">
-        <label className="text-[10px] font-bold text-[#5B6B7D]/90 uppercase tracking-[0.2em] mb-2 block">
+        <label className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 block ${labelClassName}`}>
           Tipo
         </label>
         <select

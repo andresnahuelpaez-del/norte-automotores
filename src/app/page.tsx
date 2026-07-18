@@ -273,7 +273,7 @@ export default async function HomePage() {
           AUTOS (últimos ingresos)
       ══════════════════════════════════════════════════════ */}
       {latestCars.length > 0 && (
-        <section className="py-14 sm:py-24 bg-[#F7F9FB] relative overflow-hidden">
+        <section className="py-14 sm:py-24 bg-[#EFF2F8] relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div className="flex items-end justify-between mb-8 sm:mb-14">
               <div>
@@ -318,8 +318,13 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════════
           MOTOS
       ══════════════════════════════════════════════════════ */}
-      <section className="py-14 sm:py-24 bg-[#F7F9FB]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-14 sm:py-24 bg-[#16293F] relative overflow-hidden">
+        {/* Marca de agua N sutil */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/isotipo-n.svg" alt="" aria-hidden="true"
+          className="absolute pointer-events-none select-none opacity-[0.04] -rotate-12 w-[560px] max-w-none -left-32 bottom-[-120px] brightness-0 invert"
+        />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8 sm:mb-14">
             <div>
               <div className="flex items-center gap-3 mb-3 sm:mb-4">
@@ -328,13 +333,13 @@ export default async function HomePage() {
                   Dos ruedas
                 </span>
               </div>
-              <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[#173A5E] uppercase leading-none">
+              <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-white uppercase leading-none">
                 Motos
               </h2>
             </div>
             <Link
               href="/motos"
-              className="hidden sm:flex items-center gap-1.5 text-[#5B6B7D] hover:text-brand-red text-sm font-medium transition-colors group"
+              className="hidden sm:flex items-center gap-1.5 text-white/50 hover:text-white text-sm font-medium transition-colors group"
             >
               Ver todas <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -350,7 +355,7 @@ export default async function HomePage() {
               <div className="text-center">
                 <Link
                   href="/motos"
-                  className="inline-flex items-center gap-2 border border-[#173A5E]/20 hover:border-brand-red/60 hover:bg-brand-red/[0.05] text-[#173A5E] font-semibold px-7 py-3 rounded-none transition-all duration-300 text-sm active:scale-95"
+                  className="inline-flex items-center gap-2 border border-white/25 hover:border-brand-red hover:bg-brand-red text-white font-semibold px-7 py-3 rounded-none transition-all duration-300 text-sm active:scale-95"
                 >
                   Ver catálogo completo de motos <ArrowRight size={15} />
                 </Link>
@@ -382,12 +387,12 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════════
           QUICK SEARCH
       ══════════════════════════════════════════════════════ */}
-      <section className="bg-white py-5 sm:py-7 border-y border-brand-red/20">
+      <section className="bg-[#223A54] py-6 sm:py-8 border-t border-brand-red/40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[#EFF2F8] border border-[#173A5E]/15 p-4 sm:p-5"
+          <div className="bg-white/[0.04] border border-white/10 p-4 sm:p-5"
             style={{ clipPath: "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))" }}
           >
-            <QuickSearchForm />
+            <QuickSearchForm labelClassName="text-white/60" />
           </div>
         </div>
       </section>
@@ -472,22 +477,26 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════════
           ENTREGÁ TU VEHÍCULO COMO PARTE DE PAGO
       ══════════════════════════════════════════════════════ */}
-      <section className="bg-white py-12 sm:py-16 border-y border-brand-red/20 relative overflow-hidden">
-        <div className="absolute -top-24 right-10 w-72 h-72 bg-brand-red/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-brand-red py-12 sm:py-16 relative overflow-hidden">
+        <div className="absolute -top-24 right-10 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/isotipo-n.svg" alt="" aria-hidden="true"
+          className="absolute pointer-events-none select-none opacity-[0.07] -rotate-12 w-[420px] max-w-none -right-24 -bottom-24 brightness-0 invert"
+        />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
             <div className="flex-1 text-center lg:text-left">
               <div className="flex items-center gap-3 mb-3 justify-center lg:justify-start">
-                <div className="h-px w-8 sm:w-10 bg-brand-red" />
-                <span className="text-brand-red text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em]">
+                <div className="h-px w-8 sm:w-10 bg-white/60" />
+                <span className="text-white/80 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em]">
                   Recibimos tu usado
                 </span>
               </div>
-              <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-[#173A5E] uppercase leading-none mb-3">
+              <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white uppercase leading-none mb-3">
                 ¿Tenés un auto o moto?<br />
-                <span className="text-brand-red">Lo tomamos como parte de pago</span>
+                <span className="text-white/85">Lo tomamos como parte de pago</span>
               </h2>
-              <p className="text-[#5B6B7D] text-sm sm:text-base max-w-xl mx-auto lg:mx-0">
+              <p className="text-white/75 text-sm sm:text-base max-w-xl mx-auto lg:mx-0">
                 Mandanos los datos de tu vehículo por WhatsApp y te lo cotizamos para que lo entregues como parte de pago de tu próximo auto o moto.
               </p>
             </div>
@@ -583,7 +592,7 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════════
           FINANCIACIÓN
       ══════════════════════════════════════════════════════ */}
-      <section className="py-14 sm:py-24 bg-[#0c0c0c]">
+      <section className="py-14 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 items-center">
             <div>
