@@ -24,11 +24,18 @@ export function CarCard({ car, whatsappNumber = "5493804796317" }: CarCardProps)
 
   return (
     <div
-      className="group relative bg-white overflow-hidden border border-[#173A5E]/15 hover:border-brand-red/60 transition-colors duration-300 hover:shadow-2xl hover:shadow-[#173A5E]/10 flex flex-col"
+      className="group relative bg-white overflow-hidden border border-[#173A5E]/12 hover:border-brand-red/60 flex flex-col transition-all duration-300 drop-shadow-[0_5px_18px_rgba(23,58,94,0.13)] hover:drop-shadow-[0_14px_32px_rgba(204,32,32,0.20)] hover:-translate-y-1"
       style={{
         clipPath: "polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px))",
       }}
     >
+      {/* Link que cubre toda la tarjeta (stretched link) */}
+      <Link
+        href={`/auto/${car.slug}`}
+        className="absolute inset-0 z-20"
+        aria-label={`Ver ${car.brand} ${car.model} ${car.year}`}
+      />
+
       {/* Red racing stripe top */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-brand-red z-10 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
 
@@ -167,7 +174,7 @@ export function CarCard({ car, whatsappNumber = "5493804796317" }: CarCardProps)
             )}
           </div>
 
-          <div className="flex gap-2 shrink-0">
+          <div className="relative z-30 flex gap-2 shrink-0">
             <Link
               href={`/auto/${car.slug}`}
               className="bg-brand-red hover:bg-brand-red-dark text-white text-sm font-bold px-4 py-2.5 transition-all duration-200 hover:shadow-lg hover:shadow-brand-red/30 uppercase tracking-wide"

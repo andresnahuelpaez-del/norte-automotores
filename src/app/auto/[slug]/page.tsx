@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, Calendar, Gauge, Settings, Droplets, Car, DoorOpen, CheckCircle2, Share2, ArrowLeft } from "lucide-react";
+import { Phone, Calendar, Gauge, Settings, Droplets, Car, DoorOpen, CheckCircle2, Share2, ArrowLeft, MapPin } from "lucide-react";
 import { getCarBySlug, getCars, getSiteConfig, incrementCarViews } from "@/lib/supabase/queries";
 import { formatPrice, formatMileage } from "@/lib/utils";
 import { CarCard } from "@/components/cars/CarCard";
@@ -10,6 +10,9 @@ import { ImageSlider } from "@/components/cars/ImageSlider";
 import { ShareButtons } from "@/components/cars/ShareButtons";
 import { FinanciacionAuto } from "@/components/cars/FinanciacionAuto";
 import { SITE_URL } from "@/lib/constants";
+
+const ADDRESS = "Av. Coronel Felipe Varela y Senador Rodolfo Blanco, La Rioja Capital";
+const MAPS_EMBED = "https://maps.google.com/maps?q=Av.+Coronel+Felipe+Varela+y+Senador+Rodolfo+Blanco,+La+Rioja,+Argentina&z=17&output=embed";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -202,6 +205,34 @@ export default async function AutoDetailPage({ params }: Props) {
             </div>
           </div>
         )}
+
+        {/* Ubicación */}
+        <div className="mt-14">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-[3px] bg-brand-red" />
+            <span className="text-brand-red text-[10px] font-black uppercase tracking-[0.35em]">
+              Dónde estamos
+            </span>
+          </div>
+          <h2 className="font-display font-extrabold text-3xl text-[#173A5E] uppercase mb-2">
+            Vení a conocerlo
+          </h2>
+          <p className="flex items-start gap-2 text-[#5B6B7D] text-sm mb-5">
+            <MapPin size={16} className="text-brand-red shrink-0 mt-0.5" />
+            {config.address || ADDRESS}
+          </p>
+          <div className="overflow-hidden border border-[#173A5E]/15 h-64 sm:h-80">
+            <iframe
+              src={MAPS_EMBED}
+              title="Ubicación de Norte Automotores en Google Maps"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
       </div>
 
       {/* JSON-LD */}
