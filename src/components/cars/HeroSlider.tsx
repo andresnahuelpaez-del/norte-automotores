@@ -32,7 +32,9 @@ export function HeroSlider({ images, interval = 5000, dots = true }: Props) {
           src={src}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[1200ms] ease-in-out"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1400ms] ease-in-out ${
+            i === idx ? "hero-zoom" : ""
+          }`}
           style={{ opacity: i === idx ? 1 : 0 }}
         />
       ))}

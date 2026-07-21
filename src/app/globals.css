@@ -157,6 +157,17 @@
   to   { transform: translateX(-50%); }
 }
 
+@keyframes hero-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.12); }
+}
+.hero-zoom {
+  animation: hero-zoom 14s ease-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom { animation: none; }
+}
+
 .marquee-track {
   animation: marquee 45s linear infinite;
 }
