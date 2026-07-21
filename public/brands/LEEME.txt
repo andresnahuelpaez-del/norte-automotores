@@ -1,0 +1,5 @@
+Poné acá los logos de las marcas en PNG con fondo transparente.
+Nombres exactos (todo minúscula): toyota.png, volkswagen.png, ford.png,
+chevrolet.png, fiat.png, renault.png, peugeot.png, citroen.png,
+nissan.png, honda.png, jeep.png, hyundai.png, kia.png, ram.png,
+chery.png, mercedes-benz.png, volvo.png, suzuki.png
