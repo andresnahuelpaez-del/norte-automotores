@@ -1,53 +1,54 @@
 "use client";
-import { useState } from "react";
 
-// Cinta de marcas que se venden en Argentina — scroll continuo (CSS puro).
-// Muestra el logo desde /public/brands/{slug}.png; si el archivo no existe
-// todavía, cae al nombre en texto (así nunca se ve roto).
-const MARCAS = [
-  { name: "Toyota", slug: "toyota" },
-  { name: "Volkswagen", slug: "volkswagen" },
-  { name: "Ford", slug: "ford" },
-  { name: "Chevrolet", slug: "chevrolet" },
-  { name: "Fiat", slug: "fiat" },
-  { name: "Renault", slug: "renault" },
-  { name: "Peugeot", slug: "peugeot" },
-  { name: "Citroën", slug: "citroen" },
-  { name: "Nissan", slug: "nissan" },
-  { name: "Honda", slug: "honda" },
-  { name: "Jeep", slug: "jeep" },
-  { name: "Hyundai", slug: "hyundai" },
-  { name: "Kia", slug: "kia" },
-  { name: "RAM", slug: "ram" },
-  { name: "Chery", slug: "chery" },
-  { name: "Mercedes-Benz", slug: "mercedes-benz" },
-  { name: "Volvo", slug: "volvo" },
-  { name: "Suzuki", slug: "suzuki" },
+import {
+  siVolkswagen, siToyota, siFord, siPeugeot, siRenault,
+  siFiat, siHonda, siNissan, siHyundai, siKia, siCitroen,
+  siJeep, siChevrolet, siSuzuki, siVolvo, siSubaru,
+} from "simple-icons";
+
+// Marcas que se venden en Argentina — íconos oficiales del paquete simple-icons.
+const BRANDS = [
+  { icon: siToyota, name: "Toyota" },
+  { icon: siVolkswagen, name: "Volkswagen" },
+  { icon: siFord, name: "Ford" },
+  { icon: siChevrolet, name: "Chevrolet" },
+  { icon: siFiat, name: "Fiat" },
+  { icon: siRenault, name: "Renault" },
+  { icon: siPeugeot, name: "Peugeot" },
+  { icon: siCitroen, name: "Citroën" },
+  { icon: siNissan, name: "Nissan" },
+  { icon: siHonda, name: "Honda" },
+  { icon: siJeep, name: "Jeep" },
+  { icon: siHyundai, name: "Hyundai" },
+  { icon: siKia, name: "Kia" },
+  { icon: siSuzuki, name: "Suzuki" },
+  { icon: siVolvo, name: "Volvo" },
+  { icon: siSubaru, name: "Subaru" },
 ];
 
 export function BrandsMarquee() {
-  const [failed, setFailed] = useState<Record<string, boolean>>({});
   // Se duplica la lista para que el loop de -50% sea continuo.
-  const loop = [...MARCAS, ...MARCAS];
+  const loop = [...BRANDS, ...BRANDS];
 
   return (
     <section className="bg-[#EFF2F8] border-y border-[#173A5E]/10 py-5 sm:py-6 overflow-hidden">
-      <div className="flex items-center gap-10 sm:gap-16 w-max marquee-track">
-        {loop.map((marca, i) => (
-          <div key={i} className="flex items-center gap-10 sm:gap-16 shrink-0">
-            {failed[marca.slug] ? (
-              <span className="font-display font-bold text-[#173A5E]/50 text-lg sm:text-2xl uppercase tracking-wider whitespace-nowrap">
-                {marca.name}
+      <div className="flex items-center gap-10 sm:gap-14 w-max marquee-track">
+        {loop.map((brand, i) => (
+          <div key={i} className="group flex items-center gap-10 sm:gap-14 shrink-0">
+            <span className="inline-flex items-center gap-2.5">
+              <svg
+                role="img"
+                viewBox="0 0 24 24"
+                aria-label={brand.name}
+                className="w-6 h-6 sm:w-7 sm:h-7 shrink-0 transition-colors duration-300"
+                style={{ fill: "#173A5E" }}
+              >
+                <path d={brand.icon.path} />
+              </svg>
+              <span className="font-display font-bold text-[#173A5E]/55 text-base sm:text-xl uppercase tracking-wider whitespace-nowrap">
+                {brand.name}
               </span>
-            ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={`/brands/${marca.slug}.png`}
-                alt={marca.name}
-                className="h-7 sm:h-9 w-auto object-contain grayscale opacity-55 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                onError={() => setFailed((f) => ({ ...f, [marca.slug]: true }))}
-              />
-            )}
+            </span>
             <span
               className="w-2 h-2 bg-brand-red shrink-0"
               style={{ clipPath: "polygon(50% 0, 100% 50%, 50% 100%, 0 50%)" }}
