@@ -7,6 +7,8 @@ interface Props {
   interval?: number;
   /** mostrar los puntitos indicadores */
   dots?: boolean;
+  /** object-position de las imágenes (ej: "center", "center 70%") */
+  objectPosition?: string;
 }
 
 /**
@@ -14,7 +16,7 @@ interface Props {
  * Imágenes a pantalla completa del contenedor (object-cover).
  * El contenedor padre define la forma (panel diagonal / franja).
  */
-export function HeroSlider({ images, interval = 5000, dots = true }: Props) {
+export function HeroSlider({ images, interval = 5000, dots = true, objectPosition = "center" }: Props) {
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export function HeroSlider({ images, interval = 5000, dots = true }: Props) {
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1400ms] ease-in-out ${
             i === idx ? "hero-zoom" : ""
           }`}
-          style={{ opacity: i === idx ? 1 : 0 }}
+          style={{ opacity: i === idx ? 1 : 0, objectPosition }}
         />
       ))}
 

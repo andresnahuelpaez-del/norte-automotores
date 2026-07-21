@@ -78,84 +78,150 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════════
           HERO
       ══════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden -mt-[108px] min-h-[100dvh] lg:min-h-[92dvh] flex items-start lg:items-center">
+      <section className="relative overflow-hidden bg-white -mt-[108px] pt-[108px]">
 
-        {/* Slider mobile — imágenes verticales */}
-        <div className="absolute inset-0 lg:hidden">
-          <HeroSlider images={["/hero-mobile-1.jpg", "/hero-mobile-2.jpg", "/hero-mobile-3.jpg"]} dots={false} />
-        </div>
-        {/* Slider desktop — imágenes horizontales */}
-        <div className="absolute inset-0 hidden lg:block">
-          <HeroSlider images={["/hero-1.jpg", "/hero-2.jpg", "/hero-3.jpg"]} />
-        </div>
-
-        {/* Degradados desktop: fuerte a la izquierda, abre a la derecha */}
-        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#0A1524]/95 via-[#0A1524]/55 to-transparent pointer-events-none" />
-        <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-[#0A1524]/90 via-transparent to-[#0A1524]/40 pointer-events-none" />
-        {/* Degradado mobile: refuerzo arriba (texto), deja los autos limpios abajo */}
-        <div className="lg:hidden absolute inset-0 bg-gradient-to-b from-[#0A1524]/75 via-[#0A1524]/20 to-transparent pointer-events-none" />
-
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-[128px] pb-14 lg:pb-16">
-          <div className="max-w-xl">
-
+        {/* ── MOBILE — texto sobre blanco + franja de foto con el logo ── */}
+        <div className="relative lg:hidden overflow-hidden flex flex-col justify-center px-5 pt-[130px] pb-12 bg-white">
+          <div className="relative">
             {/* Racing tag */}
-            <div className="flex items-center gap-3 mb-6 lg:mb-8">
-              <div className="w-10 lg:w-12 h-[3px] bg-brand-red" />
-              <span className="text-brand-red text-[10px] lg:text-[11px] font-black uppercase tracking-[0.4em] lg:tracking-[0.5em] font-mono">La Rioja, Argentina</span>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-[3px] bg-brand-red" />
+              <span className="text-brand-red text-[10px] font-black uppercase tracking-[0.4em] font-mono">La Rioja, Argentina</span>
+              <div className="w-4 h-[3px] bg-brand-red/40" />
             </div>
 
             <div className="glint">
-              <h1 className="font-display font-black text-[3.4rem] sm:text-7xl lg:text-[clamp(3.5rem,6.5vw,6.8rem)] text-white uppercase tracking-tight leading-[0.85] mb-5 lg:mb-7">
+              <h1 className="font-display font-black text-[3.8rem] text-[#173A5E] uppercase tracking-tight leading-[0.85] mb-5">
                 {config.hero_title ? config.hero_title : (
-                  <>TU AUTO IDEAL<br /><span className="text-brand-red" style={{ textShadow: "0 0 50px rgba(204,32,32,0.5)" }}>ESTÁ EN</span><br />NORTE</>
+                  <>TU AUTO IDEAL<br /><span className="text-brand-red" style={{ textShadow: "0 0 40px rgba(204,32,32,0.5)" }}>ESTÁ EN</span><br />NORTE</>
                 )}
               </h1>
             </div>
 
-            <p className="text-white/70 text-sm lg:text-lg mb-7 lg:mb-10 max-w-md leading-relaxed font-mono tracking-wide">
-              {config.hero_subtitle || "Autos · Motos · Financiación propia — La Rioja, Argentina"}
+            <p className="text-[#5B6B7D] text-[13px] mb-7 leading-relaxed font-mono">
+              {config.hero_subtitle || "Autos · Motos · Financiación propia — La Rioja"}
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-10 lg:mb-14">
-              <Link
-                href="/catalogo"
-                className="pulse-glow group flex items-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white font-black px-7 lg:px-10 py-4 uppercase tracking-widest text-sm lg:text-base transition-all duration-200"
-                style={{ clipPath: "polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)" }}
+            <div className="flex gap-3 mb-4">
+              <Link href="/catalogo"
+                className="flex-1 flex items-center justify-center gap-2 bg-brand-red text-white font-black text-sm py-4 uppercase tracking-wider transition-all active:scale-95"
+                style={{ clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)", boxShadow: "0 0 20px rgba(204,32,32,0.35)" }}
               >
-                Ver catálogo <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
+                Ver catálogo <ArrowRight size={15} />
               </Link>
-              <a
-                href={waUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20c45e] text-white font-black px-6 lg:px-8 py-4 uppercase tracking-widest text-sm lg:text-base transition-all duration-200 hover:shadow-lg hover:shadow-green-500/30"
-                style={{ clipPath: "polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)" }}
+              <a href={waUrl} target="_blank" rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white font-black text-sm py-4 uppercase tracking-wider transition-all active:scale-95"
+                style={{ clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)" }}
               >
-                <WhatsAppIcon size={17} />
-                WhatsApp
+                <WhatsAppIcon size={15} /> WhatsApp
               </a>
-              <a
-                href="#cotizador"
-                className="flex items-center gap-2 border-2 border-white/40 bg-white/5 backdrop-blur-sm hover:bg-brand-red hover:border-brand-red text-white font-black px-6 lg:px-8 py-4 uppercase tracking-widest text-sm lg:text-base transition-all duration-200"
-                style={{ clipPath: "polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)" }}
+            </div>
+            <a href="#cotizador"
+              className="flex items-center justify-center gap-2 w-full border border-brand-red/50 bg-brand-red/5 hover:bg-brand-red text-brand-red hover:text-white font-black text-sm py-3.5 uppercase tracking-wider transition-all duration-300 mb-8"
+              style={{ clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)" }}
+            >
+              <Calculator size={15} />
+              Cotizá tu financiamiento
+            </a>
+
+            {/* Franja slider de autos con el logo Norte */}
+            <div
+              className="relative h-52 mb-7 overflow-hidden bg-[#132C56] border-t-2 border-brand-red"
+              style={{ clipPath: "polygon(0 0, 100% 4%, 100% 100%, 0 100%)" }}
+            >
+              <HeroSlider images={["/hero-1.jpg", "/hero-2.jpg", "/hero-3.jpg"]} dots={false} objectPosition="center 72%" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1B38]/70 to-transparent pointer-events-none" />
+              <div className="absolute top-3 left-3 z-10 bg-white px-2.5 py-1.5 shadow-lg shadow-black/30"
+                style={{ clipPath: "polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px))" }}
               >
-                <Calculator size={16} />
-                Cotizá tu cuota
-              </a>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/norte-logo.PNG" alt="Norte Automotores" className="h-8 w-auto object-contain" />
+              </div>
             </div>
 
             {/* Stats */}
-            <div className="flex gap-5 sm:gap-8 pt-6 lg:pt-8 border-t border-white/15 max-w-lg">
+            <div className="flex pt-5 border-t border-brand-red/20">
               {[
-                { to: 150, suffix: "+", label: "Vehículos en stock" },
-                { to: 24, suffix: "hs", label: "Respuesta WhatsApp" },
-                { to: 100, suffix: "%", label: "Financiación propia" },
-              ].map((stat, i) => (
-                <div key={stat.label} className={`flex-1 ${i > 0 ? "border-l border-white/15 pl-5 sm:pl-8" : ""}`}>
-                  <AnimatedCounter to={stat.to} suffix={stat.suffix} className="font-display font-black text-3xl sm:text-5xl text-white leading-none mb-1 sm:mb-2 tabular-nums" />
-                  <p className="text-white/55 text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] font-mono leading-tight">{stat.label}</p>
+                { to: 150, suffix: "+", label: "en stock" },
+                { to: 24, suffix: "hs", label: "respuesta" },
+                { to: 100, suffix: "%", label: "financiación" },
+              ].map((s, i) => (
+                <div key={s.label} className={`flex-1 ${i > 0 ? "border-l border-[#173A5E]/15 pl-4" : ""}`}>
+                  <AnimatedCounter to={s.to} suffix={s.suffix} className="font-display font-black text-[1.8rem] text-[#173A5E] leading-none" />
+                  <p className="text-[#5B6B7D]/90 text-[10px] mt-1 uppercase tracking-wider font-mono">{s.label}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── DESKTOP — foto full-bleed con texto encima ── */}
+        <div className="hidden lg:flex relative min-h-[92dvh] items-center overflow-hidden">
+          <div className="absolute inset-0">
+            <HeroSlider images={["/hero-1.jpg", "/hero-2.jpg", "/hero-3.jpg"]} />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1524]/95 via-[#0A1524]/55 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1524]/90 via-transparent to-[#0A1524]/40 pointer-events-none" />
+
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 pt-[108px] pb-16">
+            <div className="max-w-xl">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-12 h-[3px] bg-brand-red" />
+                <span className="text-brand-red text-[11px] font-black uppercase tracking-[0.5em] font-mono">La Rioja, Argentina</span>
+              </div>
+
+              <div className="glint">
+                <h1 className="font-display font-black text-[clamp(3.5rem,6.5vw,6.8rem)] text-white uppercase tracking-tight leading-[0.85] mb-7">
+                  {config.hero_title ? config.hero_title : (
+                    <>TU AUTO IDEAL<br /><span className="text-brand-red" style={{ textShadow: "0 0 50px rgba(204,32,32,0.5)" }}>ESTÁ EN</span><br />NORTE</>
+                  )}
+                </h1>
+              </div>
+
+              <p className="text-white/70 text-lg mb-10 max-w-md leading-relaxed font-mono tracking-wide">
+                {config.hero_subtitle || "Autos · Motos · Financiación propia — La Rioja, Argentina"}
+              </p>
+
+              <div className="flex flex-wrap gap-3 mb-14">
+                <Link
+                  href="/catalogo"
+                  className="pulse-glow group flex items-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white font-black px-10 py-4 uppercase tracking-widest transition-all duration-200"
+                  style={{ clipPath: "polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)" }}
+                >
+                  Ver catálogo <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <a
+                  href={waUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20c45e] text-white font-black px-8 py-4 uppercase tracking-widest transition-all duration-200 hover:shadow-lg hover:shadow-green-500/30"
+                  style={{ clipPath: "polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)" }}
+                >
+                  <WhatsAppIcon size={17} />
+                  WhatsApp
+                </a>
+                <a
+                  href="#cotizador"
+                  className="flex items-center gap-2 border-2 border-white/40 bg-white/5 backdrop-blur-sm hover:bg-brand-red hover:border-brand-red text-white font-black px-8 py-4 uppercase tracking-widest transition-all duration-200"
+                  style={{ clipPath: "polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)" }}
+                >
+                  <Calculator size={16} />
+                  Cotizá tu cuota
+                </a>
+              </div>
+
+              <div className="flex gap-8 pt-8 border-t border-white/15 max-w-lg">
+                {[
+                  { to: 150, suffix: "+", label: "Vehículos en stock" },
+                  { to: 24, suffix: "hs", label: "Respuesta WhatsApp" },
+                  { to: 100, suffix: "%", label: "Financiación propia" },
+                ].map((stat, i) => (
+                  <div key={stat.label} className={`flex-1 ${i > 0 ? "border-l border-white/15 pl-8" : ""}`}>
+                    <AnimatedCounter to={stat.to} suffix={stat.suffix} className="font-display font-black text-5xl text-white leading-none mb-2 tabular-nums" />
+                    <p className="text-white/55 text-xs uppercase tracking-[0.2em] font-mono leading-tight">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
