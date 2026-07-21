@@ -9,6 +9,7 @@ import {
 import { CarCard } from "@/components/cars/CarCard";
 import { QuickSearchForm } from "@/components/cars/QuickSearchForm";
 import { CotizadorHome } from "@/components/cars/CotizadorHome";
+import { HeroSlider } from "@/components/cars/HeroSlider";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -123,19 +124,19 @@ export default async function HomePage() {
               Cotizá tu financiamiento
             </a>
 
-            {/* Franja foto del local en duotono azul */}
+            {/* Franja slider de autos con el logo Norte */}
             <div
-              className="relative h-40 mb-7 overflow-hidden bg-[#132C56] border-t-2 border-brand-red"
-              style={{ clipPath: "polygon(0 0, 100% 6%, 100% 100%, 0 100%)" }}
+              className="relative h-48 mb-7 overflow-hidden bg-[#132C56] border-t-2 border-brand-red"
+              style={{ clipPath: "polygon(0 0, 100% 4%, 100% 100%, 0 100%)" }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/local.jpg"
-                alt="Showroom de Norte Automotores"
-                className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-60"
-                style={{ objectPosition: "center 30%" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#132C56]/50 to-transparent" />
+              <HeroSlider images={["/hero-1.jpg", "/hero-2.jpg", "/hero-3.jpg"]} dots={false} />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1B38]/80 to-transparent pointer-events-none" />
+              <div className="absolute top-3 left-3 z-10 bg-white px-2.5 py-1.5 shadow-lg shadow-black/30"
+                style={{ clipPath: "polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px))" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/norte-logo.PNG" alt="Norte Automotores" className="h-8 w-auto object-contain" />
+              </div>
             </div>
 
             {/* Stats */}
@@ -162,20 +163,22 @@ export default async function HomePage() {
             className="absolute top-0 right-0 w-[45%] h-full bg-brand-red"
             style={{ clipPath: "polygon(128px 0, 150px 0, 22px 100%, 0 100%)" }}
           />
-          {/* Panel derecho — azul del logo con la foto del local en duotono */}
+          {/* Panel derecho — slider de autos con el logo Norte encima */}
           <div
-            className="absolute top-0 right-0 w-[45%] h-full bg-[#132C56]"
+            className="absolute top-0 right-0 w-[45%] h-full bg-[#132C56] overflow-hidden"
             style={{ clipPath: "polygon(150px 0, 100% 0, 100% 100%, 22px 100%)" }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/local.jpg"
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-55"
-              style={{ objectPosition: "center 30%" }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#132C56]/60 via-transparent to-[#132C56]/30" />
+            <HeroSlider images={["/hero-1.jpg", "/hero-2.jpg", "/hero-3.jpg"]} />
+            {/* Degradado inferior para dar profundidad y legibilidad al logo */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A1B38]/85 via-transparent to-[#0A1B38]/25 pointer-events-none" />
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#132C56] to-transparent pointer-events-none" />
+            {/* Logo Norte en placa */}
+            <div className="absolute top-10 left-1/2 -translate-x-1/2 z-10 bg-white px-4 py-2.5 shadow-xl shadow-black/30"
+              style={{ clipPath: "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/norte-logo.PNG" alt="Norte Automotores" className="h-14 w-auto object-contain" />
+            </div>
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 flex items-center min-h-[88dvh] pt-[108px] pb-16">
