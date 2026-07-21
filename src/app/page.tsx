@@ -10,6 +10,7 @@ import { CarCard } from "@/components/cars/CarCard";
 import { QuickSearchForm } from "@/components/cars/QuickSearchForm";
 import { CotizadorHome } from "@/components/cars/CotizadorHome";
 import { HeroSlider } from "@/components/cars/HeroSlider";
+import { BrandsMarquee } from "@/components/cars/BrandsMarquee";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -248,6 +249,11 @@ export default async function HomePage() {
 
         </div>
       </section>
+
+      {/* ══════════════════════════════════════════════════════
+          CINTA DE MARCAS
+      ══════════════════════════════════════════════════════ */}
+      <BrandsMarquee />
 
       {/* ══════════════════════════════════════════════════════
           DESTACADOS (autos + motos)
