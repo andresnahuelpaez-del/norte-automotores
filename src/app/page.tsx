@@ -78,16 +78,22 @@ export default async function HomePage() {
       {/* ══════════════════════════════════════════════════════
           HERO
       ══════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden -mt-[108px] min-h-[100dvh] lg:min-h-[92dvh] flex items-center">
+      <section className="relative overflow-hidden -mt-[108px] min-h-[100dvh] lg:min-h-[92dvh] flex items-start lg:items-center">
 
-        {/* Slider de fondo full-bleed */}
-        <div className="absolute inset-0">
-          <HeroSlider images={["/hero-1.jpg", "/hero-2.jpg"]} />
+        {/* Slider mobile — imágenes verticales */}
+        <div className="absolute inset-0 lg:hidden">
+          <HeroSlider images={["/hero-mobile-1.jpg", "/hero-mobile-2.jpg", "/hero-mobile-3.jpg"]} dots={false} />
+        </div>
+        {/* Slider desktop — imágenes horizontales */}
+        <div className="absolute inset-0 hidden lg:block">
+          <HeroSlider images={["/hero-1.jpg", "/hero-2.jpg", "/hero-3.jpg"]} />
         </div>
 
-        {/* Degradados para legibilidad: fuerte a la izquierda, abre a la derecha */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1524]/95 via-[#0A1524]/70 to-[#0A1524]/20 lg:via-[#0A1524]/55 lg:to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1524]/90 via-transparent to-[#0A1524]/40 pointer-events-none" />
+        {/* Degradados desktop: fuerte a la izquierda, abre a la derecha */}
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#0A1524]/95 via-[#0A1524]/55 to-transparent pointer-events-none" />
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-[#0A1524]/90 via-transparent to-[#0A1524]/40 pointer-events-none" />
+        {/* Degradado mobile: refuerzo arriba (texto), deja los autos limpios abajo */}
+        <div className="lg:hidden absolute inset-0 bg-gradient-to-b from-[#0A1524]/75 via-[#0A1524]/20 to-transparent pointer-events-none" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-[128px] pb-14 lg:pb-16">
           <div className="max-w-xl">
