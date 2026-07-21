@@ -80,8 +80,16 @@ export default async function HomePage() {
       ══════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-white -mt-[108px] pt-[108px]">
 
-        {/* ── MOBILE — texto sobre blanco + franja de foto con el logo ── */}
-        <div className="relative lg:hidden overflow-hidden flex flex-col justify-center px-5 pt-[130px] pb-12 bg-white">
+        {/* ── MOBILE — texto sobre blanco con el logo N de fondo ── */}
+        <div className="relative lg:hidden min-h-[90dvh] overflow-hidden flex flex-col justify-center px-5 pt-[130px] pb-12 bg-white">
+          {/* Marca de agua del isotipo N */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/isotipo-n.svg"
+            alt=""
+            aria-hidden="true"
+            className="absolute pointer-events-none select-none opacity-[0.05] -rotate-12 w-[520px] max-w-none -right-32 top-1/2 -translate-y-1/2"
+          />
           <div className="relative">
             {/* Racing tag */}
             <div className="flex items-center gap-3 mb-6">
@@ -123,21 +131,6 @@ export default async function HomePage() {
               <Calculator size={15} />
               Cotizá tu financiamiento
             </a>
-
-            {/* Franja slider de autos con el logo Norte */}
-            <div
-              className="relative h-52 mb-7 overflow-hidden bg-[#132C56] border-t-2 border-brand-red"
-              style={{ clipPath: "polygon(0 0, 100% 4%, 100% 100%, 0 100%)" }}
-            >
-              <HeroSlider images={["/hero-1.jpg", "/hero-2.jpg", "/hero-3.jpg"]} dots={false} objectPosition="center 72%" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1B38]/70 to-transparent pointer-events-none" />
-              <div className="absolute top-3 left-3 z-10 bg-white px-2.5 py-1.5 shadow-lg shadow-black/30"
-                style={{ clipPath: "polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px))" }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/norte-logo.PNG" alt="Norte Automotores" className="h-8 w-auto object-contain" />
-              </div>
-            </div>
 
             {/* Stats */}
             <div className="flex pt-5 border-t border-brand-red/20">
