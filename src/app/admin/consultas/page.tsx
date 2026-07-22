@@ -20,7 +20,7 @@ export default async function ConsultasPage() {
       <div className="flex items-center justify-between mb-5">
         <div>
           <h1 className="font-display font-bold text-2xl md:text-3xl text-brand-dark uppercase">Consultas</h1>
-          <p className="text-brand-gray text-sm">{inquiries.length} recibidas</p>
+          <p className="text-brand-gray text-sm">{inquiries.length} recibidas · Mensajes que dejan los clientes desde el formulario de contacto. Tocá &quot;Responder&quot; para escribirles por WhatsApp.</p>
         </div>
       </div>
 

@@ -23,7 +23,7 @@ export default async function AdminMotosPage() {
       <div className="flex items-center justify-between mb-5">
         <div>
           <h1 className="font-display font-bold text-2xl md:text-3xl text-brand-dark uppercase">Motos</h1>
-          <p className="text-brand-gray text-sm">{motos.length} motos en total</p>
+          <p className="text-brand-gray text-sm">{motos.length} en total · Tocá el lápiz para editar, el ojo para publicar/ocultar, la estrella para destacar.</p>
         </div>
         <Link
           href="/admin/motos/nuevo"

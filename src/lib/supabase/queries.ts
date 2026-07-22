@@ -51,7 +51,30 @@ export async function getCars(filters?: {
     console.error("[getCars] Supabase error:", error);
     throw error;
   }
-  return data as unknown as Car[];
+  return applyGlobalFlags(data as unknown as Car[], await getGlobalFlags());
+}
+
+// Lee los toggles globales de site_config (precios / financiación).
+async function getGlobalFlags() {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("site_config")
+    .select("key, value")
+    .in("key", ["show_prices_globally", "show_financing_globally"]);
+  const map = Object.fromEntries((data || []).map((r: { key: string; value: string }) => [r.key, r.value]));
+  return {
+    hidePrices: map["show_prices_globally"] === "false",
+    hideFinancing: map["show_financing_globally"] === "false",
+  };
+}
+
+function applyGlobalFlags<T extends Car>(cars: T[], flags: { hidePrices: boolean; hideFinancing: boolean }): T[] {
+  if (!flags.hidePrices && !flags.hideFinancing) return cars;
+  return cars.map((c) => ({
+    ...c,
+    show_price: flags.hidePrices ? false : c.show_price,
+    financing_available: flags.hideFinancing ? false : c.financing_available,
+  }));
 }
 
 export async function getCarBySlug(slug: string) {
@@ -63,7 +86,8 @@ export async function getCarBySlug(slug: string) {
     .eq("is_active", true)
     .single();
   if (error) return null;
-  return data as Car;
+  const [car] = applyGlobalFlags([data as Car], await getGlobalFlags());
+  return car;
 }
 
 export async function getSiteConfig(): Promise<SiteConfig> {
