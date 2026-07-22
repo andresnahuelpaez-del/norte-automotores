@@ -89,23 +89,27 @@ export default async function HomePage() {
           {/* Degradado: oscuro arriba (texto) y abajo (stats), abierto al medio */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0A1524]/92 via-[#0A1524]/20 to-[#0A1524]/85 pointer-events-none" />
 
-          <div className="relative z-10 px-5 pt-[130px] pb-10 flex-1 flex flex-col">
+          <div className="relative z-10 px-5 pt-[128px] pb-10 flex-1 flex flex-col">
             {/* Racing tag */}
-            <div className="flex items-center gap-3 mb-5">
+            <div className="flex items-center gap-3 mb-7">
               <div className="w-8 h-[3px] bg-brand-red" />
               <span className="text-brand-red text-[10px] font-black uppercase tracking-[0.4em] font-mono">La Rioja, Argentina</span>
               <div className="w-4 h-[3px] bg-brand-red/40" />
             </div>
 
             <div className="glint">
-              <h1 className="font-display font-black text-[3.5rem] text-white uppercase tracking-tight leading-[0.85] mb-4">
+              <h1 className="font-display font-black text-[3.6rem] text-white uppercase tracking-tight leading-[0.85] mb-6">
                 {config.hero_title ? config.hero_title : (
                   <>TU AUTO IDEAL<br /><span className="text-brand-red" style={{ textShadow: "0 0 40px rgba(204,32,32,0.6)" }}>ESTÁ EN</span><br />NORTE</>
                 )}
               </h1>
             </div>
 
-            <div className="flex gap-3 mb-3">
+            <p className="text-white/75 text-[13px] mb-8 leading-relaxed font-mono max-w-xs">
+              {config.hero_subtitle || "Autos · Motos · Financiación propia — La Rioja"}
+            </p>
+
+            <div className="flex gap-3 mb-3.5">
               <Link href="/catalogo"
                 className="flex-1 flex items-center justify-center gap-2 bg-brand-red text-white font-black text-sm py-4 uppercase tracking-wider transition-all active:scale-95"
                 style={{ clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)", boxShadow: "0 0 20px rgba(204,32,32,0.35)" }}
@@ -128,7 +132,7 @@ export default async function HomePage() {
             </a>
 
             {/* Stats abajo */}
-            <div className="mt-auto flex pt-5 border-t border-white/15">
+            <div className="mt-auto pt-10 flex border-t border-white/15">
               {[
                 { to: 150, suffix: "+", label: "en stock" },
                 { to: 24, suffix: "hs", label: "respuesta" },
