@@ -80,37 +80,32 @@ export default async function HomePage() {
       ══════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-white -mt-[108px] pt-[108px]">
 
-        {/* ── MOBILE — texto sobre blanco con el logo N de fondo ── */}
-        <div className="relative lg:hidden min-h-[90dvh] overflow-hidden flex flex-col justify-center px-5 pt-[130px] pb-12 bg-white">
-          {/* Marca de agua del isotipo N */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/isotipo-n.svg"
-            alt=""
-            aria-hidden="true"
-            className="absolute pointer-events-none select-none opacity-[0.05] -rotate-12 w-[520px] max-w-none -right-32 top-1/2 -translate-y-1/2"
-          />
-          <div className="relative">
+        {/* ── MOBILE — foto vertical full-bleed con texto encima ── */}
+        <div className="relative lg:hidden min-h-[100dvh] overflow-hidden flex flex-col">
+          {/* Slider de fondo — imágenes verticales */}
+          <div className="absolute inset-0">
+            <HeroSlider images={["/hero-mobile-1.jpg", "/hero-mobile-2.jpg", "/hero-mobile-3.jpg"]} dots={false} objectPosition="center top" />
+          </div>
+          {/* Degradado: oscuro arriba (texto) y abajo (stats), abierto al medio */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A1524]/92 via-[#0A1524]/20 to-[#0A1524]/85 pointer-events-none" />
+
+          <div className="relative z-10 px-5 pt-[130px] pb-10 flex-1 flex flex-col">
             {/* Racing tag */}
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-5">
               <div className="w-8 h-[3px] bg-brand-red" />
               <span className="text-brand-red text-[10px] font-black uppercase tracking-[0.4em] font-mono">La Rioja, Argentina</span>
               <div className="w-4 h-[3px] bg-brand-red/40" />
             </div>
 
             <div className="glint">
-              <h1 className="font-display font-black text-[3.8rem] text-[#173A5E] uppercase tracking-tight leading-[0.85] mb-5">
+              <h1 className="font-display font-black text-[3.5rem] text-white uppercase tracking-tight leading-[0.85] mb-4">
                 {config.hero_title ? config.hero_title : (
-                  <>TU AUTO IDEAL<br /><span className="text-brand-red" style={{ textShadow: "0 0 40px rgba(204,32,32,0.5)" }}>ESTÁ EN</span><br />NORTE</>
+                  <>TU AUTO IDEAL<br /><span className="text-brand-red" style={{ textShadow: "0 0 40px rgba(204,32,32,0.6)" }}>ESTÁ EN</span><br />NORTE</>
                 )}
               </h1>
             </div>
 
-            <p className="text-[#5B6B7D] text-[13px] mb-7 leading-relaxed font-mono">
-              {config.hero_subtitle || "Autos · Motos · Financiación propia — La Rioja"}
-            </p>
-
-            <div className="flex gap-3 mb-4">
+            <div className="flex gap-3 mb-3">
               <Link href="/catalogo"
                 className="flex-1 flex items-center justify-center gap-2 bg-brand-red text-white font-black text-sm py-4 uppercase tracking-wider transition-all active:scale-95"
                 style={{ clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)", boxShadow: "0 0 20px rgba(204,32,32,0.35)" }}
@@ -125,23 +120,23 @@ export default async function HomePage() {
               </a>
             </div>
             <a href="#cotizador"
-              className="flex items-center justify-center gap-2 w-full border border-brand-red/50 bg-brand-red/5 hover:bg-brand-red text-brand-red hover:text-white font-black text-sm py-3.5 uppercase tracking-wider transition-all duration-300 mb-8"
+              className="flex items-center justify-center gap-2 w-full border border-white/40 bg-white/5 backdrop-blur-sm hover:bg-brand-red hover:border-brand-red text-white font-black text-sm py-3.5 uppercase tracking-wider transition-all duration-300"
               style={{ clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)" }}
             >
               <Calculator size={15} />
               Cotizá tu financiamiento
             </a>
 
-            {/* Stats */}
-            <div className="flex pt-5 border-t border-brand-red/20">
+            {/* Stats abajo */}
+            <div className="mt-auto flex pt-5 border-t border-white/15">
               {[
                 { to: 150, suffix: "+", label: "en stock" },
                 { to: 24, suffix: "hs", label: "respuesta" },
                 { to: 100, suffix: "%", label: "financiación" },
               ].map((s, i) => (
-                <div key={s.label} className={`flex-1 ${i > 0 ? "border-l border-[#173A5E]/15 pl-4" : ""}`}>
-                  <AnimatedCounter to={s.to} suffix={s.suffix} className="font-display font-black text-[1.8rem] text-[#173A5E] leading-none" />
-                  <p className="text-[#5B6B7D]/90 text-[10px] mt-1 uppercase tracking-wider font-mono">{s.label}</p>
+                <div key={s.label} className={`flex-1 ${i > 0 ? "border-l border-white/15 pl-4" : ""}`}>
+                  <AnimatedCounter to={s.to} suffix={s.suffix} className="font-display font-black text-[1.8rem] text-white leading-none" />
+                  <p className="text-white/60 text-[10px] mt-1 uppercase tracking-wider font-mono">{s.label}</p>
                 </div>
               ))}
             </div>
